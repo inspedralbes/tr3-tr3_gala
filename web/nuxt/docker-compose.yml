@@ -1,0 +1,19 @@
+version: '3'
+services:
+  laravel:
+    build:
+      context: ./back/laravel
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./back/laravel:/var/www/html
+    depends_on:
+      - ./web/nuxt
+
+  nuxt:
+    build:
+      context: ./web/nuxt
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web/nuxt:/usr/src/app
