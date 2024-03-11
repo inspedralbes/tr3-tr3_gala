@@ -1,0 +1,58 @@
+# Utiliza la imagen base de Node.js para construir el front-end de Nuxt.js
+FROM node:14 AS nuxt_builder
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia el archivo package.json y package-lock.json para instalar las dependencias
+COPY ./package*.json ./
+
+# Instala las dependencias del proyecto
+RUN npm install
+
+# Copia todos los archivos de la aplicación front-end al contenedor
+COPY web .
+
+# Construye la aplicación Nuxt.js
+RUN npm run build
+
+# Utiliza la imagen base de PHP con Apache para el back-end de Laravel
+FROM php:8.0.0-apache AS laravel_php
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /var/www/html
+
+# Copia el archivo composer.json y composer.lock para instalar las dependencias
+COPY ./back/laravel/composer.* ./
+
+# Instala las dependencias de PHP utilizando Composer
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer install --no-dev --no-scripts --no-autoloader
+
+# Copia todos los archivos de la aplicación back-end al contenedor
+COPY ./back/laravel .
+
+# Crea la carpeta de almacenamiento writable para Laravel
+RUN mkdir -p storage/framework/{sessions,views,cache}
+
+# Copia los archivos generados previamente del front-end de Nuxt.js al directorio público de Laravel
+COPY --from=nuxt_builder /app/dist /var/www/html/public
+
+# Cambia los permisos de los archivos en la carpeta de almacenamiento writable
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Copia el archivo de configuración de Apache para Laravel
+COPY laravel.conf /etc/apache2/sites-available/000-default.conf
+
+# Habilita los módulos de Apache necesarios para Laravel
+RUN a2enmod rewrite
+
+# Expon el puerto 80 para el servidor web de Apache
+EXPOSE 80
+
+# CMD que arranca Apache en primer plano para mantener el contenedor en funcionamiento
+CMD ["apache2-foreground"]
