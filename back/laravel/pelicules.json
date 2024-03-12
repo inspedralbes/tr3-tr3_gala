@@ -1,0 +1,51 @@
+[
+    {
+        "nom": "The Shawshank Redemption",
+        "genere": "Drama",
+        "preu": "10.99",
+        "descripcio": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+        "imatge_url": "https://example.com/images/shawshank.jpg",
+        "duracio": "142 min"
+    },
+    {
+        "nom": "The Godfather",
+        "genere": "Crime, Drama",
+        "preu": "9.99",
+        "descripcio": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+        "imatge_url": "https://example.com/images/godfather.jpg",
+        "duracio": "175 min"
+    },
+    {
+        "nom": "The Dark Knight",
+        "genere": "Action, Crime, Drama",
+        "preu": "11.99",
+        "descripcio": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+        "imatge_url": "https://example.com/images/darkknight.jpg",
+        "duracio": "152 min"
+    },
+    {
+        "nom": "Pulp Fiction",
+        "genere": "Crime, Drama",
+        "preu": "8.99",
+        "descripcio": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "imatge_url": "https://example.com/images/pulpfiction.jpg",
+        "duracio": "154 min"
+    },
+    {
+        "nom": "Fight Club",
+        "genere": "Drama",
+        "preu": "12.99",
+        "descripcio": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+        "imatge_url": "https://example.com/images/fightclub.jpg",
+        "duracio": "139 min"
+    },
+    {
+        "nom": "Forrest Gump",
+        "genere": "Drama, Romance",
+        "preu": "9.99",
+        "descripcio": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold through the perspective of an",
+        "imatge_url": "https://example.com/images/forrest.jpg",
+        "duracio": "142 min"
+    }
+  
+]
