@@ -7,6 +7,12 @@ use App\Models\Pelicules;
 
 class PeliculesController extends Controller
 {
+    public function showForm() {
+        $pelicules = Pelicules::all();
+        $jsonPelicules = json_encode($pelicules);
+
+        return view('pelicules', compact('jsonPelicules'));
+    }
     /**
      * Display a listing of the resource.
      */

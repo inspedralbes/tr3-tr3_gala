@@ -18,6 +18,7 @@ use App\Http\Controllers\SessioController;
 */
 
 Route::get('/peliculas', [PeliculesController::class, 'index']);
+Route::get('/peliculasForm', [PeliculesController::class, 'showForm']);
 Route::post('/peliculas', [PeliculesController::class, 'store']);
 Route::get('/peliculas/{id}', [PeliculesController::class, 'show']);
 
