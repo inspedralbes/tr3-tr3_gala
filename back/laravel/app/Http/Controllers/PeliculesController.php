@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelicules;
+use Illuminate\Support\Facades\Storage;
+
 
 class PeliculesController extends Controller
 {
-    public function showForm() {
-        $pelicules = Pelicules::all();
-        $jsonPelicules = json_encode($pelicules);
+    public function showForm()
+    {
+        // Leer el archivo JSON
+        $json = Storage::disk('local')->get('../pelicules.json');
 
-        return view('pelicules', compact('jsonPelicules'));
+        // Decodificar el JSON a un array PHP
+        $data = json_decode($json, true);
+
+        // Devolver los datos como respuesta JSON
+        return response()->json($data);
     }
     /**
      * Display a listing of the resource.
