@@ -2,63 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Sessio;
+use App\Models\Pelicules;
+use Illuminate\Http\Request;
 
 class SessioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function mostrarSesion()
     {
-        $sesiones = Sessio::with('pelicula')->get(); // 'with' asegura que se incluyan los datos de la película relacionada
-        return response()->json($sesiones);
-    }
+        // Obtener una película aleatoria
+        $pelicula = Pelicules::inRandomOrder()->first();
 
-    /**
-    * Store a newly created resource in storage.
-    */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'pelicula_id' => 'required|exists:peliculas,id',
-            'fecha' => 'required|date',
-            'dia_espectador' => 'required|boolean',
-            'VIP' => 'required|boolean',
-        ]);
+        // Obtener todas las sesiones para la película seleccionada
+        $sessions = Sessio::where('pelicula_id', $pelicula->id)->get();
 
-        $sesion = Sessio::create([
-            'pelicula_id' => $request->pelicula_id,
-            'fecha' => $request->fecha,
-            'dia_espectador' => $request->dia_espectador,
-            'VIP' => $request->VIP,
-        ]);
+        // Aquí decides qué datos de la película quieres enviar junto con las sesiones
+        // Por ejemplo, podrías enviar el título y la descripción de la película
+        $datosPelicula = [
+            'titulo' => $pelicula->títol,
+            'descripcion' => $pelicula->descripció,
+            'imagen'=> $pelicula->url
+            // Puedes agregar más datos aquí según tus necesidades
+        ];
 
-        return response()->json($sesion, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(['pelicula' => $datosPelicula, 'sessions' => $sessions]);
     }
 }

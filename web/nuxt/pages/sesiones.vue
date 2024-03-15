@@ -1,6 +1,6 @@
 <template>
   <div class="sesiones-list">
-    <h1 class="page-title">Benvingut a CineCar</h1>
+    <h1 class="page-title">CINEMA</h1>
     <div class="sesiones-container movies-container">
       <div
         v-for="session in sessions"
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { compraStore } from '../stores/compra.js'; // Importa el store de Pinia
+import { compraStore } from '../stores/compra.js'; 
    
 export default {
   data() {
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch('http://localhost:8000/api/sessions') // Cambiar la ruta si es necesario
+      fetch('http://localhost:8000/api/sessions')  
         .then(response => {
           if (!response.ok) {
             throw new Error('Error al obtener los datos de la API');
