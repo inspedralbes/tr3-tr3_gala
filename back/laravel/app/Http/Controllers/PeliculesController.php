@@ -9,17 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class PeliculesController extends Controller
 {
-    public function showForm()
+    
+    public function showPelicules()
     {
-        // Leer el archivo JSON
-        $json = Storage::disk('local')->get('../pelicules.json');
+        // Obtener las películas desde la base de datos
+        $pelicules = Pelicules::all();
 
-        // Decodificar el JSON a un array PHP
-        $data = json_decode($json, true);
-
-        // Devolver los datos como respuesta JSON
-        return response()->json($data);
+        // Convertir las películas a formato JSON y devolverlas directamente
+        return response()->json($pelicules);
     }
+   
     /**
      * Display a listing of the resource.
      */
