@@ -1,23 +1,33 @@
 <template>
   <div>
-    <h2>Selecciona tus butacas</h2>
-    <div class="screen"></div> <!-- Línea simulando la pantalla -->
+    <h2>Selecciona les teves butaques</h2>
     <div class="cinema-seats">
-      <img 
-        v-for="seat in availableSeats" 
-        :key="seat.id" 
-        :src="getSeatImage(seat.status)"
+      <component
+        v-for="seat in availableSeats"
+        :key="seat.id"
+        :is="getSeatComponent(seat.status)"
         @click="toggleSeatStatus(seat)"
         :id="'seat_' + seat.id"
-      >
+        class="svg-seat"
+      />
     </div>
-    <h1 class="screen-title">PANTALLA</h1>
-    <div class="screen"></div> <!-- Línea simulando la pantalla -->
+    <div class="screen"></div>
   </div>
 </template>
 
 <script>
+import ButacaVIP from './ButacaVIP.vue';
+import ButacaLliure from './ButacaLliure.vue';
+import ButacaOcupada from './ButacaOcupada.vue';
+import ButacaSeleccionada from './ButacaSeleccionada.vue';
+
 export default {
+  components: {
+    ButacaVIP,
+    ButacaLliure,
+    ButacaOcupada,
+    ButacaSeleccionada
+  },
   props: {
     sessionId: {
       type: String,
@@ -40,46 +50,63 @@ export default {
         this.$emit('seatSelected', seat);
       } else if (seat.status === 'selected') {
         seat.status = 'available';
-        this.$emit('seatDeselected', seat); // Emitir evento cuando la butaca se deselecciona
+        this.$emit('seatDeselected', seat);
       }
     },
-    getSeatImage(status) {
-      return status === 'selected' ? '/butacaVerde.jpg' : '/butacaAzul.png';
+    getSeatComponent(status) {
+      switch (status) {
+        case 'selected':
+          return 'ButacaSeleccionada';
+        case 'available':
+          return 'ButacaLliure';
+        case 'occupied':
+          return 'ButacaOcupada';
+        default:
+          return 'ButacaLliure'; 
+      }
     }
   },
   created() {
-    // Verifica si sessionId está definido antes de usarlo
     if (typeof this.sessionId !== 'undefined') {
-      // Aquí puedes realizar alguna lógica utilizando sessionId
+      // Realiza cualquier lógica adicional aquí
     }
   }
 };
 </script>
 
 <style scoped>
-/* Estilos CSS específicos del componente */
 .cinema-seats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto; /* Centrar el contenedor */
-  max-width: 900px; /* Ancho máximo para dejar espacio en los lados */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 20px;
 }
 
-.cinema-seats img {
-  margin: 5px;
-  width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+.cinema-seats .svg-seat {
+  width: 40px; /* Ajusta el ancho según tus necesidades */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cinema-seats .svg-seat:hover {
+  transform: scale(1.3);
 }
 
 .screen {
-  border-top: 2px solid black; /* Línea simulando la pantalla */
-  width: 100%; /* Ancho total */
-  margin-bottom: 10px; /* Espacio entre la pantalla y las butacas */
+  border-top: 4px dashed #444;
+  width: 100%;
+  margin: 20px 0;
 }
 
 .screen-title {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 </style>

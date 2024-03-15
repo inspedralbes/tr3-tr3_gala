@@ -16,6 +16,7 @@ use App\Http\Controllers\SessioController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 
 Route::get('/peliculas', [PeliculesController::class, 'index']);
 Route::get('/peliculasForm', [PeliculesController::class, 'showForm']);

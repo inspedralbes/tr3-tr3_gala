@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <h1>Compra</h1>
-    <p v-if="sessioPinia">Detalles de la sesión: {{ sessioPinia.id }}</p>
+    <p v-if="sessioPinia">Detalls de la sessió: {{ sessioPinia.id }}</p>
 
-    <button class="session-button" @click="selectSession">Seleccionar sesión</button>
+    <button class="session-button" @click="selectSession">Seleccionar sessió</button>
 
     <!-- Renderiza el componente de butacas -->
     <Butacas :sessionId="sessioPinia && sessioPinia.id" @seatSelected="handleSeatSelected"
@@ -11,13 +11,13 @@
 
     <!-- Renderiza el menú de butacas seleccionadas -->
     <div v-if="selectedSeats.length" class="selected-seats">
-      <h2>Butacas seleccionadas:</h2>
+      <h2>Butaques seleccionadas:</h2>
       <ul>
         <li v-for="(seat, index) in selectedSeats" :key="index">
-          Butaca: {{ seat.id }} - Precio: {{ seat.precio }}€
+          Butaca: {{ seat.id }} - Preu: {{ seat.precio }}€
         </li>
       </ul>
-      <p>Total de butacas seleccionadas: {{ totalSeats }}</p>
+      <p>Total de butaques seleccionades: {{ totalSeats }}</p>
       <p>Total a pagar: {{ totalPrice }}€</p>
     </div>
     <button @click="efectuarCompra">Comprar</button>

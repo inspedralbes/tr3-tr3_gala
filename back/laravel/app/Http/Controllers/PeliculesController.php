@@ -1,34 +1,20 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Pelicules;
-use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 
-class PeliculesSeeder extends Seeder
+class PeliculesController extends Controller
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function showPelicules()
     {
-        $json = File::get(database_path('../pelicules.json'));
-        $pelicules = json_decode($json, true);
+        // Obtener las películas desde la base de datos
+        $pelicules = Pelicules::all();
 
-        foreach ($pelicules as $pelicula) {
-            Pelicules::create([
-                'titol' => $pelicula['titol'], 
-                'descripcio' => $pelicula['descripcio'],
-                'director' => $pelicula['director'],
-                'any' => $pelicula['any'],
-                'url' => $pelicula['url'],
-            ]);
-        }
+        // Convertir las películas a formato JSON y devolverlas directamente
+        return response()->json($pelicules);
     }
 }
 
-
+?>
