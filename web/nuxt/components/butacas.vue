@@ -11,6 +11,7 @@
         class="svg-seat"
       />
     </div>
+    <h1>PANTALLA</h1>
     <div class="screen"></div>
   </div>
 </template>
@@ -101,7 +102,14 @@ export default {
   width: 100%;
   margin: 20px 0;
 }
+h1{
+  text-align: center;
+  font-size: 44px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
 
+}
 .screen-title {
   text-align: center;
   font-size: 24px;

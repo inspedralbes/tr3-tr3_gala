@@ -113,7 +113,7 @@ export default {
 }
 
 .session-button {
-  background-color: #4CAF50;
+  background-color: #af4caf;
   /* Green */
   border: none;
   color: white;
