@@ -1,6 +1,6 @@
 <template>
   <div class="movie-list">
-    <h1 class="page-title">Benvingut a CineCar</h1>
+    <h1 class="page-title">CINEMA</h1>
     <div class="movies-container">
       <div v-for="movie in movies" :key="movie.id" class="movie">
         <div class="movie-card">
