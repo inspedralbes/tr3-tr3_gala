@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Pelicules;
 use Illuminate\Support\Facades\File;
@@ -20,13 +21,14 @@ class PeliculesSeeder extends Seeder
 
         foreach ($pelicules as $pelicula) {
             Pelicules::create([
-                'nom' => $pelicula['nom'],
-                'genere' => $pelicula['genere'],
-                'preu' => $pelicula['preu'],
+                'titol' => $pelicula['titol'], 
                 'descripcio' => $pelicula['descripcio'],
-                'imatge_url' => $pelicula['imatge_url'], // Aquí está el cambio
-                'duracio' => $pelicula['duracio'],
+                'director' => $pelicula['director'],
+                'any' => $pelicula['any'],
+                'url' => $pelicula['url'],
             ]);
         }
     }
 }
+
+

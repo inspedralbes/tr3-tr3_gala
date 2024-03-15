@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('pelicules', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('titol'); // Cambiado de 'nom' a 'títol'
+            $table->text('descripcio'); // Cambiado de 'descripció' a 'text'
+            $table->string('director');
+            $table->unsignedSmallInteger('any'); // Cambiado de 'any_estrena' a 'unsignedSmallInteger'
+            $table->string('url'); // Cambiado de 'url_imatge' a 'enllaç_imatge'
+            $table->timestamps();            
         });
     }
 

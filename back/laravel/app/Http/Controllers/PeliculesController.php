@@ -1,95 +1,34 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Database\Seeders;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 use App\Models\Pelicules;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
-
-class PeliculesController extends Controller
+class PeliculesSeeder extends Seeder
 {
-    
-    public function showPelicules()
-    {
-        // Obtener las películas desde la base de datos
-        $pelicules = Pelicules::all();
-
-        // Convertir las películas a formato JSON y devolverlas directamente
-        return response()->json($pelicules);
-    }
-   
     /**
-     * Display a listing of the resource.
+     * Run the database seeds.
+     *
+     * @return void
      */
-    public function index()
+    public function run()
     {
-        $peliculas = Pelicules::all();
-        return Pelicules::all();
-    }
+        $json = File::get(database_path('../pelicules.json'));
+        $pelicules = json_decode($json, true);
 
-    /**
-    * Store a newly created resource in storage.
-    */
-   
-    public function store(Request $request)
-    {
-        // Validación de datos
-        $validatedData = $request->validate([
-            'nom' => 'required|string|max:255', // 'required' = 'obligatorio', 'string' = 'cadena de texto', 'max:255' = 'máximo 255 caracteres'
-            'genere' => 'required|string|max:255',
-            'preu' => 'required|string|max:255',
-            'descripcio' => 'required|string|max:255',
-            'imatge_url' => 'nullable|string|max:255',
-            'duracio' => 'required|string|max:255',
-        ]);
-            
-        // Crear nueva película
-        $pelicula = Pelicules::create($validatedData);
-
-        // Devolver respuesta
-        return response()->json($pelicula, 201); // 201 = Created
-    }
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($request)
-    {
-         // Validación de datos
-        $validatedData = $request->validate([
-            'nom' => 'required|string|max:255', // 'required' = 'obligatorio', 'string' = 'cadena de texto', 'max:255' = 'máximo 255 caracteres'
-            'genere' => 'required|string|max:255',
-            'preu' => 'required|string|max:255',
-            'descripcio' => 'required|string|max:255',
-            'imatge_url' => 'nullable|string|max:255',
-            'duracio' => 'required|string|max:255',
-        ]);
-            
-        // Buscar la película por ID
-        $pelicula = Pelicules::findOrFail($request->id); // Si no encuentra la película, devolverá un error 404
-
-        // Actualizar la película
-        $pelicula->update($validatedData);
-
-        // Devolver respuesta
-        return response()->json($pelicula);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        foreach ($pelicules as $pelicula) {
+            Pelicules::create([
+                'titol' => $pelicula['titol'], 
+                'descripcio' => $pelicula['descripcio'],
+                'director' => $pelicula['director'],
+                'any' => $pelicula['any'],
+                'url' => $pelicula['url'],
+            ]);
+        }
     }
 }
+
+

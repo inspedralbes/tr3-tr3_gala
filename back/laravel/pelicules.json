@@ -1,51 +1,124 @@
 [
-    {
-        "nom": "The Shawshank Redemption",
-        "genere": "Drama",
-        "preu": "10.99",
-        "descripcio": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-        "imatge_url": "https://example.com/images/shawshank.jpg",
-        "duracio": "142 min"
-    },
-    {
-        "nom": "The Godfather",
-        "genere": "Crime, Drama",
-        "preu": "9.99",
-        "descripcio": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-        "imatge_url": "https://example.com/images/godfather.jpg",
-        "duracio": "175 min"
-    },
-    {
-        "nom": "The Dark Knight",
-        "genere": "Action, Crime, Drama",
-        "preu": "11.99",
-        "descripcio": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-        "imatge_url": "https://example.com/images/darkknight.jpg",
-        "duracio": "152 min"
-    },
-    {
-        "nom": "Pulp Fiction",
-        "genere": "Crime, Drama",
-        "preu": "8.99",
-        "descripcio": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-        "imatge_url": "https://example.com/images/pulpfiction.jpg",
-        "duracio": "154 min"
-    },
-    {
-        "nom": "Fight Club",
-        "genere": "Drama",
-        "preu": "12.99",
-        "descripcio": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
-        "imatge_url": "https://example.com/images/fightclub.jpg",
-        "duracio": "139 min"
-    },
-    {
-        "nom": "Forrest Gump",
-        "genere": "Drama, Romance",
-        "preu": "9.99",
-        "descripcio": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold through the perspective of an",
-        "imatge_url": "https://example.com/images/forrest.jpg",
-        "duracio": "142 min"
-    }
+      {
+        "id": 1,
+        "titol": "Inception",
+        "descripcio": "Un lladre que entra en els somnis dels altres per robar secrets del seu subconscient.",
+        "director": "Christopher Nolan",
+        "any": 2010,
+        "url": "https://i.pinimg.com/originals/a4/a3/d9/a4a3d901487cb61d972d534741f815f3.jpg"
+      },
+      {
+        "id": 2,
+        "titol": "The Shawshank Redemption",
+        "descripcio": "Dos homes empresonats es vinculen al llarg d'una sèrie d'anys, trobant consol i eventual redempció a través d'actes de decència comuna.",
+        "director": "Frank Darabont",
+        "any": 1994,
+        "url": "https://m.media-amazon.com/images/I/71VNhykMgNL._AC_UF894,1000_QL80_.jpg"
+      },
+      {
+        "id": 3,
+        "titol": "The Godfather",
+        "descripcio": "El patriarca envellit d'una dinastia del crim organitzat transmet el control del seu imperi clandestí al seu fill reticent.",
+        "director": "Francis Ford Coppola",
+        "any": 1972,
+        "url": "https://i.pinimg.com/736x/24/5a/44/245a44e4d9da3687f77e6202bd6d2995.jpg"
+      },
+      {
+        "id": 4,
+        "titol": "The Dark Knight",
+        "descripcio": "Quan el Joker comença a causar estralls a Gotham City, Batman es veu obligat a intervenir per protegir la ciutat que tant estima.",
+        "director": "Christopher Nolan",
+        "any": 2008,
+        "url": "https://i.pinimg.com/originals/47/7f/41/477f41e7457b4a1b2d9a423e28d18f5a.jpg"
+      },
+      {
+        "id": 5,
+        "titol": "The Lord of the Rings: The Return of the King",
+        "descripcio": "Mentre l'ombra de la guerra s'estén per tota la Terra Mitjana, Aragorn es presenta com a líder dels mortals per dur a terme la darrera batalla contra Sauron.",
+        "director": "Peter Jackson",
+        "any": 2003,
+        "url": "https://i.pinimg.com/originals/c3/af/66/c3af66c2db87942b8dabcfd6e2e66e13.jpg"
+      },
+      {
+        "id": 6,
+        "titol": "Pulp Fiction",
+        "descripcio": "Històries interconnectades sobre crim, passió i violència a Los Angeles.",
+        "director": "Quentin Tarantino",
+        "any": 1994,
+        "url": "https://m.media-amazon.com/images/I/51KGTUrvvlL._AC_.jpg"
+      },
+      {
+        "id": 7,
+        "titol": "Forrest Gump",
+        "descripcio": "Les cròniques de la vida de Forrest Gump, un home amb un baix coeficient intel·lectual, que va participar involuntàriament en molts dels esdeveniments més importants de la història dels Estats Units.",
+        "director": "Robert Zemeckis",
+        "any": 1994,
+        "url": "https://i.pinimg.com/originals/4f/49/e0/4f49e0c43b94a0b97b925f07a3a4a16d.jpg"
+      },
+      {
+        "id": 8,
+        "titol": "The Matrix",
+        "descripcio": "Un hacker descobreix la veritat sorprenent sobre el món que l'envolta.",
+        "director": "The Wachowskis",
+        "any": 1999,
+        "url": "https://m.media-amazon.com/images/I/51vpnbPUa9L.jpg"
+      },
+      {
+        "id": 9,
+        "titol": "Interstellar",
+        "descripcio": "Un grup d'exploradors espacials viatja a través d'un forat de cuc per garantir la supervivència de la humanitat.",
+        "director": "Christopher Nolan",
+        "any": 2014,
+        "url": "https://i.pinimg.com/originals/f7/06/01/f70601f96fa28c3a5b408a97cd321b49.jpg"
+      },
+      {
+        "id": 10,
+        "titol": "Fight Club",
+        "descripcio": "Un insòlit club de lluita porta a un executiu i a un venedor de sabó a formar un vincle inesperat.",
+        "director": "David Fincher",
+        "any": 1999,
+        "url": "https://i.pinimg.com/originals/c2/a3/5f/c2a35f2717c98d4a7d42d3885f44ac29.jpg"
+      },
+      {
+        "id": 11,
+        "titol": "The Silence of the Lambs",
+        "descripcio": "Un jove agent del FBI s'enfronta al psicòpata caníbal Dr. Hannibal Lecter per atrapar a un assassí en sèrie.",
+        "director": "Jonathan Demme",
+        "any": 1991,
+        "url": "https://i.pinimg.com/originals/79/ed/24/79ed2416fa5ec3e0b2d18572f9ad2dbf.jpg"
+      },
+      {
+        "id": 12,
+        "titol": "Schindler's List",
+        "descripcio": "Un empresari alemany salva la vida de milers de jueus polonesos durant l'Holocaust.",
+        "director": "Steven Spielberg",
+        "any": 1993,
+        "url": "https://i.pinimg.com/originals/47/22/ef/4722ef1b545b83cc5f0063f7cf1a2a2e.jpg"
+      },
+      {
+        "id": 13,
+        "titol": "The Departed",
+        "descripcio": "Un agent encobert i un informant cadascun naveguen en una xarxa perillosa de delinqüència i traïció.",
+        "director": "Martin Scorsese",
+        "any": 2006,
+        "url": "https://i.pinimg.com/originals/98/e8/98/98e89823f14c08b7b8a210fffd4dab91.jpg"
+      },
+      {
+        "id": 14,
+        "titol": "Goodfellas",
+        "descripcio": "La vida dels gàngsters des de la dècada de 1950 fins als anys 1980.",
+        "director": "Martin Scorsese",
+        "any": 1990,
+        "url": "https://i.pinimg.com/originals/49/95/f0/4995f0a8dd2f254f1642ab4ee9af4f4e.jpg"
+      },
+      {
+        "id": 15,
+        "titol": "Inglourious Basterds",
+        "descripcio": "Un grup de soldats jueus-estatunidencs amb l'objectiu de matar nazis d'alta jerarquia durant la Segona Guerra Mundial.",
+        "director": "Quentin Tarantino",
+        "any": 2009,
+        "url": "https://i.pinimg.com/originals/36/7c/80/367c808b21c0220f9ad6b7a020f41fae.jpg"
+      }
+    ]
   
-]
+  

@@ -21,4 +21,3 @@ class CreateSessioTable extends Migration
         Schema::dropIfExists('sessions');
     }
 }
-?>
