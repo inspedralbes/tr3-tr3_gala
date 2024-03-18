@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\CompraController;
-use App\Http\Controllers\SessioController;
+use App\Http\Controllers\SessionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,11 +15,12 @@ use App\Http\Controllers\SessioController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/{sessionId}/ocupadas',  [CompraController::class, 'obtenerButacasOcupadas']);
 Route::post('/efectuarCompra', [CompraController::class, 'guardarCompra']);
 Route::get('/compras', [CompraController::class, 'mostrarCompra']);
-Route::get('/sessions', [SessioController::class, 'mostrarSesion']);
+Route::get('/sessions', [SessionController::class, 'mostrarSesion']);
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); 
