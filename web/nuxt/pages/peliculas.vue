@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-semibold text-center mb-8">CARTELERA</h1>
+  <div class="bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">CARTELERA</h1>
     <div class="flex flex-wrap justify-center gap-8">
-      <div v-for="movie in movies" :key="movie.id" class="bg-white shadow-md hover:shadow-lg transition duration-300 ease-in-out rounded-lg overflow-hidden" style="max-width: 300px;">
-        <div class="overflow-hidden h-99">
-          <img :src="movie.enllaç_imatge" :alt="movie.títol" class="w-full h-full object-cover object-center">
+      <div v-for="movie in movies" :key="movie.id" class="bg-white shadow-lg hover:shadow-xl transition duration-300 ease-in-out rounded-lg overflow-hidden transform hover:scale-105" style="max-width: 300px;">
+        <div class="overflow-hidden h-64">
+          <img :src="movie.url" :alt="movie.títol" class="w-full h-full object-cover object-center">
         </div>
-        <div class="p-4">
-          <h2 class="text-xl font-semibold mb-2">{{ movie.títol }}</h2>
+        <div class="p-6">
+          <h2 class="text-2xl font-bold mb-2 text-gray-800">{{ movie.títol }}</h2>
           <p class="text-gray-700 mb-2">{{ movie.descripció }}</p>
           <p class="text-gray-700 mb-2">Director: {{ movie.director }}</p>
-          <p class="text-gray-700">Any d'estrena: {{ movie.any_estrena }}</p>
+          <p class="text-gray-700">Any d'estrena: {{ movie.any}}</p>
         </div>
       </div>
     </div>

@@ -1,24 +1,35 @@
 <template>
-  <div>
-    <h2>Selecciona tus butacas</h2>
-    <div class="screen"></div> <!-- Línea simulando la pantalla -->
+  <div class="container">
+    <h2 class="section-title">Seleccionar butacas</h2>
     <div class="cinema-seats">
-      <img 
-        v-for="seat in availableSeats" 
-        :key="seat.id" 
-        :src="getSeatImage(seat.status)"
+      <component
+        v-for="seat in availableSeats"
+        :key="seat.id"
+        :is="getSeatComponent(seat.status)"
         @click="toggleSeatStatus(seat)"
         :id="'seat_' + seat.id"
-      >
+        class="svg-seat"
+      />
     </div>
-    <h1 class="screen-title">PANTALLA</h1>
-    <div class="screen"></div> <!-- Línea simulando la pantalla -->
+    <div class="screen">
+      <h1 class="screen-title">Pantalla</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import { compraStore } from '../stores/compra.js'
+import ButacaVIP from './ButacaVIP.vue';
+import ButacaLliure from './ButacaLliure.vue';
+import ButacaOcupada from './ButacaOcupada.vue';
+import ButacaSeleccionada from './ButacaSeleccionada.vue';
+
 export default {
+  components: {
+    ButacaVIP,
+    ButacaLliure,
+    ButacaOcupada,
+    ButacaSeleccionada
+  },
   props: {
     sessionId: {
       type: String,
@@ -27,108 +38,85 @@ export default {
   },
   data() {
     return {
-      sessioPinia: null,
       availableSeats: Array.from({ length: 80 }, (_, index) => ({
         id: index + 1,
         status: 'available',
         precio: 6.50
-      })),
-      occupiedSeats: []
-
+      }))
     };
   },
   methods: {
     toggleSeatStatus(seat) {
-  if (seat.status === 'available') {
-    // Comprueba si la butaca está ocupada
-    const isOccupied = this.isSeatOccupied(seat.id);
-    if (isOccupied) {
-      seat.status = 'ocupado'; // Cambiar a 'ocupado'
-    } else {
-      seat.status = 'selected';
-      this.$emit('seatSelected', seat);
-    }
-  } else if (seat.status === 'selected') {
-    seat.status = 'available';
-    this.$emit('seatDeselected', seat);
-  }
-},
-
-    getSeatImage(status) {
-      // Ajusta el retorno de la imagen dependiendo del estado de la butaca
-      switch (status) {
-        case 'selected':
-          return '/butacaVerde.jpg';
-        case 'ocupado':
-          return '/butacaOcupada.jpg';
-        default:
-          return '/butacaAzul.png';
+      if (seat.status === 'available') {
+        seat.status = 'selected';
+        this.$emit('seatSelected', seat);
+      } else if (seat.status === 'selected') {
+        seat.status = 'available';
+        this.$emit('seatDeselected', seat);
       }
     },
-    isSeatOccupied(seatId) {
-      // Busca la butaca por su ID en el array de butacas ocupadas
-      return this.occupiedSeats.some(seat => seat.id === seatId);
-    },
-  obtenerButacasOcupadas() {
-    console.log('SessioId: Butacas:', this.sessioPinia);
-      fetch(`http://localhost:8000/api/${this.sessioPinia}/ocupadas`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.sessioPinia)
-      })
-      .then(response => response.json())
-      .then(result => {
-        // Actualizar el estado de las butacas ocupadas
-        result.forEach(occupiedSeat => {
-          const seat = this.availableSeats.find(seat => seat.id === occupiedSeat.id);
-          if (seat) {
-            seat.status = 'ocupado';
-          }
-        });
-        console.log('Butacas ocupadas:', result);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    getSeatComponent(status) {
+      switch (status) {
+        case 'selected':
+          return 'ButacaSeleccionada';
+        case 'available':
+          return 'ButacaLliure';
+        case 'occupied':
+          return 'ButacaOcupada';
+        default:
+          return 'ButacaLliure'; 
+      }
     }
   },
   created() {
-    let storeSesion= compraStore();   
-    this.sessioPinia = storeSesion.getSessio().id;
-    console.log('ID de la sesión butaca Created:', this.sessioPinia);
-    if (typeof this.sessioPinia !== 'undefined') {
-      this.obtenerButacasOcupadas();
+    if (typeof this.sessionId !== 'undefined') {
+      // Realiza cualquier lógica adicional aquí
     }
   }
 };
 </script>
 
 <style scoped>
-
-.cinema-seats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto; 
-  max-width: 900px; 
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.cinema-seats img {
-  margin: 5px;
-  width: 50px; 
+.section-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cinema-seats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+  justify-items: center;
+}
+
+.cinema-seats .svg-seat {
+  width: 40px; /* Ajusta el ancho según tus necesidades */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cinema-seats .svg-seat:hover {
+  transform: scale(1.3);
 }
 
 .screen {
-  border-top: 2px solid black; 
-  width: 100%; 
-  margin-bottom: 10px; 
+  text-align: center;
+  margin-top: 20px;
 }
 
 .screen-title {
-  text-align: center;
   font-size: 24px;
-  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 </style>

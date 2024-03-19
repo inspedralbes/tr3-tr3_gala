@@ -37,7 +37,7 @@ export default {
     return {
       sessioPinia: null,
       sessionId: null,
-      selectedSeats: []  // Nueva propiedad para almacenar las butacas seleccionadas
+      selectedSeats: []  // paraa almacenar las butacas seleccionadas
     };
   },
   computed: {
