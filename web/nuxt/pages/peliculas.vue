@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">CARTELERA</h1>
-    <div class="flex flex-wrap justify-center gap-8">
+     <div class="py-12 px-4 sm:px-6 lg:px-8" style="background-color: #FFD7E8;">
+    <h1 class="text-4xl font-bold text-center mb-8 text-white">CARTELERA</h1>
+      <div class="flex flex-wrap justify-center gap-8">
       <div v-for="movie in movies" :key="movie.id" class="bg-white shadow-lg hover:shadow-xl transition duration-300 ease-in-out rounded-lg overflow-hidden transform hover:scale-105" style="max-width: 300px;" @click="selectedMovie = movie">
         <div class="overflow-hidden h-64">
           <img :src="movie.url" :alt="movie.titol" class="w-full h-full object-cover object-center">

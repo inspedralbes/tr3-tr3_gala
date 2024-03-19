@@ -1,5 +1,5 @@
 <template>
-  <header class="cine-header bg-white-100">
+  <header class="cine-header" :style="{ backgroundColor: '#ff4081' }">
     <!-- Menú de navegación -->
     <nav class="cine-menu mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
@@ -17,13 +17,13 @@
       <!-- Elementos del menú principal -->
       <nav class="hidden lg:flex lg:gap-x-12">
         <ul class="flex space-x-4">
-          <li><nuxt-link to="/">Inicio</nuxt-link></li>
-          <li><nuxt-link to="/peliculas">Cartelera</nuxt-link></li>
-          <li><nuxt-link to="/sesiones">Sesión del Día</nuxt-link></li>
+          <li><nuxt-link to="/" class="font-bold text-white">Inicio</nuxt-link></li>
+          <li><nuxt-link to="/peliculas" class="font-bold text-white">Cartelera</nuxt-link></li>
+          <li><nuxt-link to="/sesiones" class="font-bold text-white">Sesión del Día</nuxt-link></li>
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/Login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+        <a href="/Login" class="text-sm font-bold leading-6 text-white">Log in <span aria-hidden="true">&rarr;</span></a>
       </div>
     </nav>
     <!-- Menú desplegable para dispositivos móviles -->
@@ -41,7 +41,7 @@
           </button>
         </div>
         <div class="py-6">
-          <nuxt-link to="/login">Login</nuxt-link>
+          <nuxt-link to="/login" class="font-bold text-white">Login</nuxt-link>
         </div>
       </DialogPanel>
     </Dialog>
