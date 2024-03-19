@@ -13,7 +13,7 @@
           Sessio del Dia
         </router-link>
         <router-link to="/login" class="link blue">
-          Login
+          Login 
         </router-link>
       </div>
     </div>
