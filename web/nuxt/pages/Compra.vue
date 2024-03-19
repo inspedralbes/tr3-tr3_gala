@@ -1,86 +1,74 @@
 <template>
   <div class="container">
-    
     <!-- Renderiza el componente de butacas -->
-    <Butacas :sessionId="sessioPinia && sessioPinia.id" @seatSelected="handleSeatSelected"
-      @seatDeselected="handleSeatDeselected" />
+    <Butacas
+      :sessionId="sessioPinia && sessioPinia.id"
+      @seatSelected="handleSeatSelected"
+      @seatDeselected="handleSeatDeselected"
+    />
 
     <!-- Renderiza el menú de butacas seleccionadas -->
-    <transition name="fade">
-      <div v-if="selectedSeats.length" class="selected-seats">
-        <h2>Butaques seleccionadas:</h2>
-        <ul>
-          <li v-for="(seat, index) in selectedSeats" :key="index">
-            Butaca: {{ seat.id }} - Preu: {{ seat.precio }}€
-          </li>
-        </ul>
-        <div class="summary">
-          <p>Total de butaques seleccionadas: {{ totalSeats }}</p>
-          <p>Total a pagar: {{ totalPrice }}€</p>
-          <button @click="efectuarCompra">Comprar</button>
-        </div>
-      </div>
-    </transition>
+    <div v-if="selectedSeats.length" class="selected-seats">
+      <h2>Butacas seleccionadas:</h2>
+      <ul>
+        <li v-for="(seat, index) in selectedSeats" :key="index">
+          Butaca: {{ seat.id }} - Precio: {{ seat.precio }}€
+        </li>
+      </ul>
+      <p>Total de butacas seleccionadas: {{ totalSeats }}</p>
+      <p>Total a pagar: {{ totalPrice }}€</p>
+    </div>
+    <button @click="efectuarCompra">Comprar</button>
   </div>
 </template>
 
 <script>
-import { compraStore } from '../stores/compra.js'
-import Butacas from '../components/butacas.vue'
+import { compraStore } from "../stores/compra.js";
+import Butacas from "../components/butacas.vue";
 
 export default {
   components: {
-    Butacas
+    Butacas,
   },
   data() {
     return {
       sessioPinia: null,
       sessionId: null,
-      selectedSeats: []  
+      selectedSeats: [], // almacenar las butacas seleccionadas
     };
   },
   computed: {
     totalSeats() {
-      return this.selectedSeats.length;  
+      return this.selectedSeats.length; //  número total de butacas seleccionadas
     },
     totalPrice() {
-      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0);  
-    }
+      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); // + precio de todas las butacas seleccionadas
+    },
   },
   created() {
-    this.sessioPinia = compraStore.sessio;
+    let storeSesion = compraStore();
+    this.sessioPinia = storeSesion.sessio;
     this.sessionId = this.sessioPinia ? this.sessioPinia.id : null;
   },
   methods: {
     efectuarCompra() {
-      let storeSesion = compraStore();   
-      storeSesion.setButacaSeleccionada(this.selectedSeats);
-      let sessioId = storeSesion.getSessio().id;
+      let storeSesion = compraStore();
+      storeSesion.butacas = this.selectedSeats;
+      let sessioId = storeSesion.sessio.id;
       const data = {
-        seats: this.selectedSeats.map(seat => ({ id: seat.id, price: seat.precio, status: seat.status })),
-        sessionId: sessioId
+        seats: this.selectedSeats.map((seat) => ({
+          id: seat.id,
+          price: seat.precio,
+          status: seat.status
+        })),
+        sessionId: sessioId,
       };
-      console.log('Datos de la compra:', data);
-      fetch('http://localhost:8000/api/efectuarCompra', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(result => {
-          // Handle the response from the API
-          console.log(result);
-        })
-        .catch(error => {
-          // Handle any errors that occurred during the fetch request
-          console.error(error);
-        });
+      console.log("Datos de la compra:", data);
+      this.$router.push({ path: "/ticket" });
     },
     handleSeatSelected(seat) {
-      console.log('Butaca seleccionada:', seat);
-      const index = this.selectedSeats.findIndex(s => s.id === seat.id);
+      console.log("Butaca seleccionada:", seat);
+      const index = this.selectedSeats.findIndex((s) => s.id === seat.id);
       if (index !== -1) {
         // Si la butaca ya está seleccionada, la elimina del array
         this.selectedSeats.splice(index, 1);
@@ -90,17 +78,16 @@ export default {
       }
     },
     handleSeatDeselected(seat) {
-      const index = this.selectedSeats.findIndex(s => s.id === seat.id);
+      const index = this.selectedSeats.findIndex((s) => s.id === seat.id);
       if (index !== -1) {
         this.selectedSeats.splice(index, 1);
       }
     },
-    selectSession() {
-      // Aquí puedes agregar lógica para seleccionar una sesión
-    }
-  }
+  },
 };
 </script>
+
+
 
 <style scoped>
 .container {
@@ -177,7 +164,6 @@ export default {
   margin: 4px 2px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  border-radius: 50%;
 }
 
 .summary button:hover {

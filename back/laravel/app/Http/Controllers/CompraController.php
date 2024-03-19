@@ -34,11 +34,29 @@ class CompraController extends Controller
             $compra->sesion_id = $data['sessionId'];
             $compra->butaca_id = $butaca->id;
 
-            // Guardar la compra en la base de datos
+           
             $compra->save();
         }
 
-        // Devolver la compra en formato JSON
+       
         return response()->json($compra);
+    }
+    public function obtenerButacasOcupadas($sessionId)
+    {
+        
+        $compras = Compra::where('sesion_id', $sessionId)->get();
+
+        
+        $butacasOcupadas = [];
+
+       
+        foreach ($compras as $compra) {
+            $butacasOcupadas[] = $compra->butaca_id;
+        }
+
+       
+        $butacas = Butaca::whereIn('id', $butacasOcupadas)->where('ocupacion', 'ocupado')->get();
+
+        return response()->json($butacas);
     }
 }

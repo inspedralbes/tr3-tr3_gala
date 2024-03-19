@@ -21,6 +21,7 @@ Route::get('/compras', [CompraController::class, 'mostrarCompra']);
 Route::get('/sessions', [SessionsController::class, 'mostrarSesion']);
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 Route::get('/sessions/{sessionId}/purchasedSeats', [SessionsController::class, 'getPurchasedSeats']);
+Route::post('/{sessionId}/ocupadas',  [CompraController::class, 'obtenerButacasOcupadas']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
