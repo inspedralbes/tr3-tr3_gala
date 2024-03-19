@@ -15,7 +15,7 @@
           </li>
         </ul>
         <div class="summary">
-          <p>Total de butaques seleccionades: {{ totalSeats }}</p>
+          <p>Total de butaques seleccionadas: {{ totalSeats }}</p>
           <p>Total a pagar: {{ totalPrice }}€</p>
           <button @click="efectuarCompra">Comprar</button>
         </div>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
 import { compraStore } from '../stores/compra.js'
 import Butacas from '../components/butacas.vue'
 
@@ -37,19 +36,18 @@ export default {
     return {
       sessioPinia: null,
       sessionId: null,
-      selectedSeats: []  // paraa almacenar las butacas seleccionadas
+      selectedSeats: []  
     };
   },
   computed: {
     totalSeats() {
-      return this.selectedSeats.length;  // Retorna el número total de butacas seleccionadas
+      return this.selectedSeats.length;  
     },
     totalPrice() {
-      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0);  // Suma el precio de todas las butacas seleccionadas
+      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0);  
     }
   },
   created() {
-
     this.sessioPinia = compraStore.sessio;
     this.sessionId = this.sessioPinia ? this.sessioPinia.id : null;
   },
@@ -81,9 +79,7 @@ export default {
         });
     },
     handleSeatSelected(seat) {
-      //let storeSesion = compraStore();   
       console.log('Butaca seleccionada:', seat);
-      //storeSesion.setButacaSeleccionada(seat);
       const index = this.selectedSeats.findIndex(s => s.id === seat.id);
       if (index !== -1) {
         // Si la butaca ya está seleccionada, la elimina del array
@@ -105,11 +101,12 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .container {
   width: 80%;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f8f8f8;
   border-radius: 10px;
   padding: 20px;
@@ -125,7 +122,7 @@ export default {
 }
 
 .selected-seats {
-  background-color: #dfdfdf;
+  background-color: #f0f0f0;
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
@@ -135,7 +132,7 @@ export default {
 .selected-seats h2 {
   font-size: 24px;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .selected-seats ul {
@@ -145,7 +142,7 @@ export default {
 
 .selected-seats ul li {
   padding: 10px 0;
-  border-bottom: 1px solid #c2c2c2;
+  border-bottom: 1px solid #e0e0e0;
   color: #333;
   font-size: 18px;
 }
@@ -155,7 +152,7 @@ export default {
 }
 
 .summary {
-  background-color: #a5a5a5;
+  background-color: #e0e0e0;
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
@@ -169,7 +166,7 @@ export default {
 }
 
 .summary button {
-  background-color: #af4caf;
+  background-color: #6c63ff;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -180,10 +177,11 @@ export default {
   margin: 4px 2px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 50%;
 }
 
 .summary button:hover {
-  background-color: #9b3c9b;
+  background-color: #5a54d8;
   transform: scale(1.05);
 }
 </style>

@@ -54,10 +54,10 @@ export default {
   },
   methods: {
     goToSession(session) {
-      let storeSesion = compraStore();
-      storeSesion.setSessio(session);
-      this.$router.push(`/compra`);
-    },
+  let storeSesion = compraStore();
+  storeSesion.setSessio(session);
+  this.$router.push(`/compra/${session.id}`);
+},
   },
 };
 </script>

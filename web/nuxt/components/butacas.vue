@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-   
     <div class="cinema-seats">
      
       <component
@@ -71,8 +70,22 @@ export default {
   },
   created() {
     if (typeof this.sessionId !== 'undefined') {
-      // Realiza cualquier lógica adicional aquí
     }
+  },
+  async mounted() {
+    try {
+      const response = await fetch(`http://localhost:8000/api/sessions/${this.sessionId}/purchasedSeats`);
+      const purchasedSeats = await response.json();
+
+      for (const seat of this.availableSeats) {
+        if (purchasedSeats.includes(seat.id)) {
+          seat.status = 'occupied';
+        }
+      }
+    } catch (error) {
+    console.error('Error:', error);
+  }
+
   }
 };
 </script>
