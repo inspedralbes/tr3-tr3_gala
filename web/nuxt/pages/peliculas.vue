@@ -7,8 +7,8 @@
           <img :src="movie.url" :alt="movie.títol" class="w-full h-full object-cover object-center">
         </div>
         <div class="p-6">
-          <h2 class="text-2xl font-bold mb-2 text-gray-800">{{ movie.títol }}</h2>
-          <p class="text-gray-700 mb-2">{{ movie.descripció }}</p>
+          <h2 class="text-2xl font-bold mb-2 text-gray-800">{{ movie.titol }}</h2>
+  
           <p class="text-gray-700 mb-2">Director: {{ movie.director }}</p>
           <p class="text-gray-700">Any d'estrena: {{ movie.any}}</p>
         </div>

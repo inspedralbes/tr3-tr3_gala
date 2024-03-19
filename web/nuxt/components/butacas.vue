@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    
+   
     <div class="cinema-seats">
+     
       <component
         v-for="seat in availableSeats"
         :key="seat.id"

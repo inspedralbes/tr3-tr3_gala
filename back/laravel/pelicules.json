@@ -1,124 +1,60 @@
 [
-      {
-        "id": 1,
-        "titol": "Inception",
-        "descripcio": "Un lladre que entra en els somnis dels altres per robar secrets del seu subconscient.",
-        "director": "Christopher Nolan",
-        "any": 2010,
-        "url": "https://i.pinimg.com/originals/a4/a3/d9/a4a3d901487cb61d972d534741f815f3.jpg"
-      },
-      {
-        "id": 2,
-        "titol": "The Shawshank Redemption",
-        "descripcio": "Dos homes empresonats es vinculen al llarg d'una sèrie d'anys, trobant consol i eventual redempció a través d'actes de decència comuna.",
-        "director": "Frank Darabont",
-        "any": 1994,
-        "url": "https://m.media-amazon.com/images/I/71VNhykMgNL._AC_UF894,1000_QL80_.jpg"
-      },
-      {
-        "id": 3,
-        "titol": "The Godfather",
-        "descripcio": "El patriarca envellit d'una dinastia del crim organitzat transmet el control del seu imperi clandestí al seu fill reticent.",
-        "director": "Francis Ford Coppola",
-        "any": 1972,
-        "url": "https://i.pinimg.com/736x/24/5a/44/245a44e4d9da3687f77e6202bd6d2995.jpg"
-      },
-      {
-        "id": 4,
-        "titol": "The Dark Knight",
-        "descripcio": "Quan el Joker comença a causar estralls a Gotham City, Batman es veu obligat a intervenir per protegir la ciutat que tant estima.",
-        "director": "Christopher Nolan",
-        "any": 2008,
-        "url": "https://i.pinimg.com/originals/47/7f/41/477f41e7457b4a1b2d9a423e28d18f5a.jpg"
-      },
-      {
-        "id": 5,
-        "titol": "The Lord of the Rings: The Return of the King",
-        "descripcio": "Mentre l'ombra de la guerra s'estén per tota la Terra Mitjana, Aragorn es presenta com a líder dels mortals per dur a terme la darrera batalla contra Sauron.",
-        "director": "Peter Jackson",
-        "any": 2003,
-        "url": "https://i.pinimg.com/originals/c3/af/66/c3af66c2db87942b8dabcfd6e2e66e13.jpg"
-      },
-      {
-        "id": 6,
-        "titol": "Pulp Fiction",
-        "descripcio": "Històries interconnectades sobre crim, passió i violència a Los Angeles.",
-        "director": "Quentin Tarantino",
-        "any": 1994,
-        "url": "https://m.media-amazon.com/images/I/51KGTUrvvlL._AC_.jpg"
-      },
-      {
-        "id": 7,
-        "titol": "Forrest Gump",
-        "descripcio": "Les cròniques de la vida de Forrest Gump, un home amb un baix coeficient intel·lectual, que va participar involuntàriament en molts dels esdeveniments més importants de la història dels Estats Units.",
-        "director": "Robert Zemeckis",
-        "any": 1994,
-        "url": "https://i.pinimg.com/originals/4f/49/e0/4f49e0c43b94a0b97b925f07a3a4a16d.jpg"
-      },
-      {
-        "id": 8,
-        "titol": "The Matrix",
-        "descripcio": "Un hacker descobreix la veritat sorprenent sobre el món que l'envolta.",
-        "director": "The Wachowskis",
-        "any": 1999,
-        "url": "https://m.media-amazon.com/images/I/51vpnbPUa9L.jpg"
-      },
-      {
-        "id": 9,
-        "titol": "Interstellar",
-        "descripcio": "Un grup d'exploradors espacials viatja a través d'un forat de cuc per garantir la supervivència de la humanitat.",
-        "director": "Christopher Nolan",
-        "any": 2014,
-        "url": "https://i.pinimg.com/originals/f7/06/01/f70601f96fa28c3a5b408a97cd321b49.jpg"
-      },
-      {
-        "id": 10,
-        "titol": "Fight Club",
-        "descripcio": "Un insòlit club de lluita porta a un executiu i a un venedor de sabó a formar un vincle inesperat.",
-        "director": "David Fincher",
-        "any": 1999,
-        "url": "https://i.pinimg.com/originals/c2/a3/5f/c2a35f2717c98d4a7d42d3885f44ac29.jpg"
-      },
-      {
-        "id": 11,
-        "titol": "The Silence of the Lambs",
-        "descripcio": "Un jove agent del FBI s'enfronta al psicòpata caníbal Dr. Hannibal Lecter per atrapar a un assassí en sèrie.",
-        "director": "Jonathan Demme",
-        "any": 1991,
-        "url": "https://i.pinimg.com/originals/79/ed/24/79ed2416fa5ec3e0b2d18572f9ad2dbf.jpg"
-      },
-      {
-        "id": 12,
-        "titol": "Schindler's List",
-        "descripcio": "Un empresari alemany salva la vida de milers de jueus polonesos durant l'Holocaust.",
-        "director": "Steven Spielberg",
-        "any": 1993,
-        "url": "https://i.pinimg.com/originals/47/22/ef/4722ef1b545b83cc5f0063f7cf1a2a2e.jpg"
-      },
-      {
-        "id": 13,
-        "titol": "The Departed",
-        "descripcio": "Un agent encobert i un informant cadascun naveguen en una xarxa perillosa de delinqüència i traïció.",
-        "director": "Martin Scorsese",
-        "any": 2006,
-        "url": "https://i.pinimg.com/originals/98/e8/98/98e89823f14c08b7b8a210fffd4dab91.jpg"
-      },
-      {
-        "id": 14,
-        "titol": "Goodfellas",
-        "descripcio": "La vida dels gàngsters des de la dècada de 1950 fins als anys 1980.",
-        "director": "Martin Scorsese",
-        "any": 1990,
-        "url": "https://i.pinimg.com/originals/49/95/f0/4995f0a8dd2f254f1642ab4ee9af4f4e.jpg"
-      },
-      {
-        "id": 15,
-        "titol": "Inglourious Basterds",
-        "descripcio": "Un grup de soldats jueus-estatunidencs amb l'objectiu de matar nazis d'alta jerarquia durant la Segona Guerra Mundial.",
-        "director": "Quentin Tarantino",
-        "any": 2009,
-        "url": "https://i.pinimg.com/originals/36/7c/80/367c808b21c0220f9ad6b7a020f41fae.jpg"
-      }
-    ]
-  
-  
+  {
+    "id": 1,
+    "titol": "The Lion King",
+    "descripcio": "Simba, un león joven y heredero al trono, es desterrado de su reino por su tío malvado. Con la ayuda de nuevos amigos, Simba debe descubrir cómo reclamar lo que legítimamente le corresponde.",
+    "director": "Roger Allers, Rob Minkoff",
+    "any": 1994,
+    "url": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg"
+  },
+
+  {
+    "id": 2,
+    "titol": "Frozen",
+    "descripcio": "Después de que el reino de Arendelle quede atrapado en un invierno eterno, la intrépida princesa Anna se une a un montañés rudo llamado Kristoff y a su leal reno Sven en una búsqueda para encontrar a su hermana Elsa, cuyos poderes de hielo han atrapado al reino en un invierno eterno.",
+    "director": "Chris Buck, Jennifer Lee",
+    "any": 2013,
+    "url": "https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg"
+  },
+  {
+    "id": 3,
+    "titol": "Toy Story",
+    "descripcio": "Un grupo de juguetes cobran vida cuando su dueño, Andy, no está presente. Cuando un nuevo juguete llamado Buzz Lightyear entra en la vida de Andy, Woody, el juguete favorito de Andy, se siente amenazado y comienza una rivalidad entre ellos.",
+    "director": "John Lasseter",
+    "any": 1995,
+    "url": "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg"
+  },
+  {
+    "id": 6,
+    "titol": "Finding Nemo",
+    "descripcio": "Un pez payaso llamado Marlin emprende un viaje épico para encontrar a su hijo Nemo, quien fue capturado por un buceador y llevado a un acuario.",
+    "director": "Andrew Stanton",
+    "any": 2003,
+    "url": "https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg"
+  },
+  {
+    "id": 7,
+    "titol": "Moana",
+    "descripcio": "Una joven llamada Moana se embarca en una aventura para salvar su isla y su gente. En su viaje, se encuentra con el semidiós Maui, quien la ayuda en su búsqueda.",
+    "director": "Ron Clements, John Musker",
+    "any": 2016,
+    "url": "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg"
+  },
+  {
+    "id": 8,
+    "titol": "Coco",
+    "descripcio": "Miguel, un niño de 12 años, se embarca en una extraordinaria aventura a través de la Tierra de los Muertos para descubrir la verdad detrás de la historia de su familia y su prohibición de la música.",
+    "director": "Lee Unkrich",
+    "any": 2017,
+    "url": "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg"
+  },
+
+  {
+    "id": 9,
+    "titol": "Tangled",
+    "descripcio": "Una princesa llamada Rapunzel, que tiene el pelo más largo y mágico del mundo, escapa de su torre y se embarca en una aventura con un ladrón buscado llamado Flynn Rider.",
+    "director": "Nathan Greno, Byron Howard",
+    "any": 2010,
+    "url": "https://upload.wikimedia.org/wikipedia/en/a/a8/Tangled_poster.jpg"
+  }
+]

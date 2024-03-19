@@ -1,23 +1,26 @@
 <template>
   <div class="container">
+    
     <!-- Renderiza el componente de butacas -->
     <Butacas :sessionId="sessioPinia && sessioPinia.id" @seatSelected="handleSeatSelected"
       @seatDeselected="handleSeatDeselected" />
 
     <!-- Renderiza el menú de butacas seleccionadas -->
-    <div v-if="selectedSeats.length" class="selected-seats">
-      <h2>Butaques seleccionadas:</h2>
-      <ul>
-        <li v-for="(seat, index) in selectedSeats" :key="index">
-          Butaca: {{ seat.id }} - Preu: {{ seat.precio }}€
-        </li>
-      </ul>
-      <div class="summary">
-        <p>Total de butaques seleccionades: {{ totalSeats }}</p>
-        <p>Total a pagar: {{ totalPrice }}€</p>
-        <button @click="efectuarCompra">Comprar</button>
+    <transition name="fade">
+      <div v-if="selectedSeats.length" class="selected-seats">
+        <h2>Butaques seleccionadas:</h2>
+        <ul>
+          <li v-for="(seat, index) in selectedSeats" :key="index">
+            Butaca: {{ seat.id }} - Preu: {{ seat.precio }}€
+          </li>
+        </ul>
+        <div class="summary">
+          <p>Total de butaques seleccionades: {{ totalSeats }}</p>
+          <p>Total a pagar: {{ totalPrice }}€</p>
+          <button @click="efectuarCompra">Comprar</button>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -113,6 +116,14 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 .selected-seats {
   background-color: #dfdfdf;
   padding: 20px;
@@ -168,10 +179,11 @@ export default {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .summary button:hover {
   background-color: #9b3c9b;
+  transform: scale(1.05);
 }
 </style>
