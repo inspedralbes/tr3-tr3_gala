@@ -9,7 +9,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pelicula_id')->constrained('peliculas');
+            $table->foreignId('pelicula_id')->constrained('pelicules');
             $table->date('fecha');
             $table->time('hora');
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\CompraController;
-use App\Http\Controllers\SessioController;
+use App\Http\Controllers\SessionsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +18,7 @@ use App\Http\Controllers\SessioController;
 Route::post('/{sessionId}/ocupadas',  [CompraController::class, 'obtenerButacasOcupadas']);
 Route::post('/efectuarCompra', [CompraController::class, 'guardarCompra']);
 Route::get('/compras', [CompraController::class, 'mostrarCompra']);
-Route::get('/sessions', [SessioController::class, 'mostrarSesion']);
+Route::get('/sessions', [SessionsController::class, 'mostrarSesion']);
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

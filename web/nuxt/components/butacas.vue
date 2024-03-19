@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 class="section-title">Seleccionar butacas</h2>
+    
     <div class="cinema-seats">
       <component
         v-for="seat in availableSeats"
