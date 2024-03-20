@@ -1,37 +1,37 @@
 <template>
   <div>
-      <form @submit.prevent="formPost">
+    <form @submit.prevent="formPost">
 
 
-          <div>
-              <label for="email">Email</label>
-              <input type="email" id="email" v-model="email">
-          </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" v-model="email">
+      </div>
 
-          <div>
-              <label for="password">Contrasenya</label>
-              <input type="password" id="password" v-model="password">
-          </div>
-          <div>
-              <nuxt-link to="/registre">Encara no tens compte? Registra't!</nuxt-link>
-          </div>
+      <div>
+        <label for="password">Contrasenya</label>
+        <input type="password" id="password" v-model="password">
+      </div>
+      <div>
+        <nuxt-link to="/registre">Encara no tens compte? Registra't!</nuxt-link>
+      </div>
 
-          <button type="submit">Inicia sessió</button>
-          
+      <button type="submit">Inicia sessió</button>
 
-      </form>
+
+    </form>
   </div>
 </template>
 <script>
-export default{
-  data(){
-    return{
+export default {
+  data() {
+    return {
       email: '',
       password: ''
     }
   },
   methods: {
-    formPost(){
+    formPost() {
       fetch('http://localhost:8000/api/login', {
         method: 'POST',
         headers: {
@@ -42,23 +42,23 @@ export default{
           password: this.password
         })
       })
-      .then(response => response.json())
-      .then(data => {
-        if(data && data.success){
-          alert('Has iniciat sessió correctament!');
-          this.$router.push('/sesiones');
-        } else {
-          alert('Error al iniciar sessió');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.token) {
+            alert('Has iniciat sessió correctament!');
+            this.$router.push('/');
+          } else if (data.error) {
+            alert('Error al iniciar sessió: ' + data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
     }
   }
 }
 </script>
-  
+
 <style lang="scss" scoped>
 div {
   display: flex;
@@ -78,7 +78,7 @@ form {
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.1);
 }
 
-div > div {
+div>div {
   margin-bottom: 10px;
 }
 
