@@ -1,8 +1,10 @@
+// store.js
 import { defineStore } from 'pinia';
 
-export const compraStore = defineStore('compra', {
+export const compraStore = defineStore('store', {
   state: () => ({
     sessio: {},
-    butacas: []
-  })
+    butacas: [],
+    email: null,  
+  }),
 });

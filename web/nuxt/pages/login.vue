@@ -1,24 +1,18 @@
 <template>
-  <div>
-    <form @submit.prevent="formPost">
-
-
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="email">
+  <div class="flex items-center justify-center h-screen bg-gray-100">
+    <form @submit.prevent="formPost" class="flex flex-col w-72 bg-white p-5 rounded-xl shadow-lg">
+      <div class="mb-4">
+        <label for="email" class="mb-1 font-bold">Email</label>
+        <input type="email" id="email" v-model="email" class="w-full p-2 border border-gray-300 rounded text-lg">
       </div>
-
-      <div>
-        <label for="password">Contrasenya</label>
-        <input type="password" id="password" v-model="password">
+      <div class="mb-4">
+        <label for="password" class="mb-1 font-bold">Contrasenya</label>
+        <input type="password" id="password" v-model="password" class="w-full p-2 border border-gray-300 rounded text-lg">
       </div>
-      <div>
-        <nuxt-link to="/registre">Encara no tens compte? Registra't!</nuxt-link>
+      <div class="mb-4">
+        <nuxt-link to="/registre" class="text-blue-500 hover:underline">Encara no tens compte? Registra't!</nuxt-link>
       </div>
-
-      <button type="submit">Inicia sessió</button>
-
-
+      <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded text-lg hover:bg-blue-700 transition-colors duration-300">Inicia sessió</button>
     </form>
   </div>
 </template>
@@ -45,6 +39,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           if (data.token) {
+            store.state.email = this.email;
             alert('Has iniciat sessió correctament!');
             this.$router.push('/');
           } else if (data.error) {
@@ -58,54 +53,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.1);
-}
-
-div>div {
-  margin-bottom: 10px;
-}
-
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007BFF;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-</style>

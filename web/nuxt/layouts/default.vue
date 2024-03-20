@@ -23,7 +23,12 @@
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/Login" class="text-sm font-bold leading-6 text-white">Log in <span aria-hidden="true">&rarr;</span></a>
+        <nuxt-link v-if="compraStore.state.email" :to="'/zonaUsuari/' + compraStore.state.email" class="text-sm font-bold leading-6 text-white">
+          {{ compraStore.state.email }} <span aria-hidden="true">&rarr;</span>
+        </nuxt-link>
+        <a v-else href="/Login" class="text-sm font-bold leading-6 text-white">
+          Log in <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </nav>
     <!-- Menú desplegable para dispositivos móviles -->
@@ -41,7 +46,10 @@
           </button>
         </div>
         <div class="py-6">
-          <nuxt-link to="/login" class="font-bold text-white">Login</nuxt-link>
+          <nuxt-link v-if="compraStore.state.email" :to="'/zonaUsuari/' + compraStore.state.email" class="font-bold text-white">
+            {{ compraStore.state.email }} <span aria-hidden="true">&rarr;</span>
+          </nuxt-link>
+          <nuxt-link v-else to="/login" class="font-bold text-white">Login</nuxt-link>
         </div>
       </DialogPanel>
     </Dialog>
@@ -51,6 +59,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue'
+import { compraStore } from '../stores/compra.js'
 
 const mobileMenuOpen = ref(false)
 </script>

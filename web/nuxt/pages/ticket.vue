@@ -49,6 +49,7 @@ export default {
       return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); // Suma el precio de todas las butacas seleccionadas
     },
     async efectuarCompra() {
+      const storeSesion = compraStore();
       const data = {
         seats: this.selectedSeats.map((seat) => ({
           id: seat.id,
@@ -56,6 +57,7 @@ export default {
           status: seat.status
         })),
         sessionId: this.sessioPinia.id,
+        userEmail: storeSesion.email, // Agrega el correo electrónico del usuario a la solicitud
       };
 
       try {
