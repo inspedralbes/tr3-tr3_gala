@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
@@ -39,16 +40,18 @@ export default {
         .then(response => response.json())
         .then(data => {
           if (data.token) {
-            store.state.email = this.email;
+
+            console.log('PAPOPAPE',compraStore().email);
+            compraStore().email = this.email;
             alert('Has iniciat sessió correctament!');
             this.$router.push('/');
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
           }
         })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        // .catch(error => {
+        //   console.error('Error:', error);
+        // });
     }
   }
 }

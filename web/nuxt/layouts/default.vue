@@ -23,10 +23,8 @@
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <nuxt-link v-if="compraStore.state.email" :to="'/zonaUsuari/' + compraStore.state.email" class="text-sm font-bold leading-6 text-white">
-          {{ compraStore.state.email }} <span aria-hidden="true">&rarr;</span>
-        </nuxt-link>
-        <a v-else href="/Login" class="text-sm font-bold leading-6 text-white">
+        
+        <a href="/Login" class="text-sm font-bold leading-6 text-white">
           Log in <span aria-hidden="true">&rarr;</span>
         </a>
       </div>

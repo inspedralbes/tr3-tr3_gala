@@ -59,7 +59,6 @@ export default {
         return response.json();
       })
       .then(data => {
-        // Verificar si la respuesta tiene la estructura esperada
         if (Array.isArray(data)) {
           this.movies = data;
         } else {

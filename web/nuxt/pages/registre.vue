@@ -46,6 +46,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           if (data.token) {
+            
             alert("T'has registrat correctament!");
             this.$router.push('/login');
           } else if (data.error) {
