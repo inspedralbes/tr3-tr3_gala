@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use App\Models\Butaca;
-use App\Models\User; // Importa la clase User
+use App\Models\User; 
+use Illuminate\Support\Facades\Mail; 
+use App\Mail\PurchaseReceipt;
+
 
 class CompraController extends Controller
 {
@@ -42,13 +45,26 @@ class CompraController extends Controller
 
             $compra->sesion_id = $data['sessionId'];
             $compra->butaca_id = $butaca->id;
-            $compra->id_user = $user->id; // Usa el ID del usuario obtenido a través del correo electrónico
+            $compra->id_user = $user->id; 
 
             $compra->save();
         }
 
+        // Prepara los datos para el correo electrónico
+        $emailData = [
+            'seats' => $data['seats'],
+            'session' => $data['sessionId'],
+            'totalPrice' => array_reduce($data['seats'], function ($carry, $seat) {
+                return $carry + $seat['price'];
+            }, 0),
+        ];
+
+        // Envía el correo electrónico
+        Mail::to($user->email)->send(new PurchaseReceipt($emailData));
+
         return response()->json($compra);
     }
+
 
     public function obtenerButacasOcupadas($sessionId)
     {

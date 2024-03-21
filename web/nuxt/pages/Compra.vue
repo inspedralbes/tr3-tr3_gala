@@ -52,7 +52,9 @@ export default {
   },
   methods: {
     efectuarCompra() {
+      
       let storeSesion = compraStore();
+      console.log(storeSesion.email);
       storeSesion.butacas = this.selectedSeats;
       let sessioId = storeSesion.sessio.id;
       const data = {

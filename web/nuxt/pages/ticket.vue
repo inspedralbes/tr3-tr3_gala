@@ -1,20 +1,40 @@
 <template>
   <div class="ticket-container">
     <h1>Ticket de compra</h1>
-    <div class="ticket-details">
-      <p>Fecha: {{ formatDate }}</p>
-      <p>Película: {{ movieTitle }}</p>
-      <p>Sesión: {{ sessionDate }} - {{ sessionTime }}</p>
-      <p>Butacas seleccionadas:</p>
-      <ul>
-        <li v-for="(seat, index) in selectedSeats" :key="index">
-          Butaca: {{ seat.id }} - Precio: {{ seat.precio }}€
-        </li>
-      </ul>
-      <p>Total de butacas seleccionadas: {{ totalSeats }}</p>
-      <p>Total a pagar: {{ totalPrice }}€</p>
-      <button @click="efectuarCompra()">Comprar</button>
-    </div>
+    <table class="ticket-details">
+      <tr>
+        <td>Fecha:</td>
+        <td>{{ formatDate }}</td>
+      </tr>
+      <tr>
+        <td>Película:</td>
+        <td>{{ movieTitle }}</td>
+      </tr>
+      <tr>
+        <td>Sesión:</td>
+        <td>{{ sessionDate }} - {{ sessionTime }}</td>
+      </tr>
+      <tr>
+        <td>Butacas seleccionadas:</td>
+        <td>
+          <table>
+            <tr v-for="(seat, index) in selectedSeats" :key="index">
+              <td>Butaca: {{ seat.id }}</td>
+              <td>Precio: {{ seat.precio }}€</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>Total de butacas seleccionadas:</td>
+        <td>{{ totalSeats }}</td>
+      </tr>
+      <tr>
+        <td>Total a pagar:</td>
+        <td>{{ totalPrice }}€</td>
+      </tr>
+    </table>
+    <button @click="efectuarCompra()">Comprar</button>
   </div>
 </template>
 
@@ -48,6 +68,8 @@ export default {
     totalPrice() {
       return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); // Suma el precio de todas las butacas seleccionadas
     },
+  },
+  methods: {
     async efectuarCompra() {
       const storeSesion = compraStore();
       const data = {
@@ -57,7 +79,7 @@ export default {
           status: seat.status
         })),
         sessionId: this.sessioPinia.id,
-        userEmail: storeSesion.email, // Agrega el correo electrónico del usuario a la solicitud
+        userEmail: storeSesion.email, 
       };
 
       try {
