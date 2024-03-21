@@ -19,7 +19,7 @@
   
   onMounted(async () => {
     try {
-      const response = await fetch('/api/compras', {
+      const response = await fetch('http://localhost:8000/api/comprasPorUsuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,11 +1,8 @@
 <template>
   <div class="container">
     <!-- Renderiza el componente de butacas -->
-    <Butacas
-      :sessionId="sessioPinia && sessioPinia.id"
-      @seatSelected="handleSeatSelected"
-      @seatDeselected="handleSeatDeselected"
-    />
+    <Butacas :sessionId="sessioPinia && sessioPinia.id" @seatSelected="handleSeatSelected"
+      @seatDeselected="handleSeatDeselected" />
 
     <!-- Renderiza el menú de butacas seleccionadas -->
     <div v-if="selectedSeats.length" class="selected-seats">
@@ -52,7 +49,6 @@ export default {
   },
   methods: {
     efectuarCompra() {
-      
       let storeSesion = compraStore();
       console.log(storeSesion.email);
       storeSesion.butacas = this.selectedSeats;
@@ -64,6 +60,7 @@ export default {
           status: seat.status
         })),
         sessionId: sessioId,
+        userEmail: storeSesion.email, 
       };
       console.log("Datos de la compra:", data);
       this.$router.push({ path: "/ticket" });
@@ -72,10 +69,10 @@ export default {
       console.log("Butaca seleccionada:", seat);
       const index = this.selectedSeats.findIndex((s) => s.id === seat.id);
       if (index !== -1) {
-        // Si la butaca ya está seleccionada, la elimina del array
+        
         this.selectedSeats.splice(index, 1);
       } else {
-        // Si la butaca no está seleccionada, la agrega al array
+     
         this.selectedSeats.push(seat);
       }
     },
@@ -102,11 +99,13 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity .5s;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 

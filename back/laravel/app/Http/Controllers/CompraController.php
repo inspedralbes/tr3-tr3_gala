@@ -24,12 +24,12 @@ class CompraController extends Controller
         $compras = Compra::where('id_user', $user->id)->get();
         return response()->json($compras);
     }
-
+   
     public function guardarCompra(Request $request)
     {
         $data = $request->all();
 
-        // Obtiene el usuario a través del correo electrónico
+  
         $user = User::where('email', $data['userEmail'])->first();
 
         foreach ($data['seats'] as $seatData) {
@@ -50,8 +50,7 @@ class CompraController extends Controller
             $compra->save();
         }
 
-        // Prepara los datos para el correo electrónico
-        $emailData = [
+        $dataSend = [
             'seats' => $data['seats'],
             'session' => $data['sessionId'],
             'totalPrice' => array_reduce($data['seats'], function ($carry, $seat) {
@@ -59,8 +58,8 @@ class CompraController extends Controller
             }, 0),
         ];
 
-        // Envía el correo electrónico
-        Mail::to($user->email)->send(new PurchaseReceipt($emailData));
+       
+        Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
 
         return response()->json($compra);
     }
@@ -79,5 +78,20 @@ class CompraController extends Controller
         $butacas = Butaca::whereIn('id', $butacasOcupadas)->where('ocupacion', 'ocupado')->get();
 
         return response()->json($butacas);
+    }
+    public function actualizarButacas(Request $request)
+    {
+        $data = $request->all();
+
+        foreach ($data['seats'] as $seatData) {
+            $butaca = Butaca::find($seatData['id']);
+
+            $butaca->precio = $seatData['price'];
+            $butaca->ocupacion = $seatData['status'];
+
+            $butaca->save();
+        }
+
+        return response()->json(['message' => 'Butacas actualizadas']);
     }
 }
