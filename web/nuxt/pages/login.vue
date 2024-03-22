@@ -43,6 +43,7 @@ export default {
 
             console.log('PAPOPAPE',compraStore().email);
             compraStore().email = this.email;
+            compraStore().movieTitle = "Moana";
             alert('Has iniciat sessió correctament!');
             this.$router.push('/');
           } else if (data.error) {

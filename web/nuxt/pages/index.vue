@@ -1,20 +1,22 @@
 <template>
   <div class="container">
+    <!-- Existing content -->
     <div class="content">
-      <div class="header">
-        <h1 class="title">CINEMA GALA</h1>
-        <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
-      </div>
+      <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
+      <h1 class="title">CINEMA GALA</h1>
       <div class="links">
-        <router-link to="/peliculas" class="link pink">
-          Cartelera
-        </router-link>
-        <router-link to="/sesiones" class="link violet">
-          Sessio del Dia
-        </router-link>
-        <router-link to="/login" class="link blue">
-          Login 
-        </router-link>
+        <router-link to="/peliculas" class="link pink">Cartelera</router-link>
+        <router-link to="/sesiones" class="link violet">Sessio del Dia</router-link>
+        <router-link to="/login" class="link blue">Login</router-link>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2024 Cinema Gala. All rights reserved.</p>
+      <div class="links">
+        <router-link to="/terms" class="link">Terms of Service</router-link>
+        <router-link to="/privacy" class="link">Privacy Policy</router-link>
       </div>
     </div>
   </div>
@@ -27,97 +29,115 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #FFD7E8;
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+  .container {
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
   }
 
-  100% {
-    opacity: 1;
+  @media (min-width: 640px) {
+    .container {
+      padding: 1.5rem;
+    }
   }
-}
 
-.content {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.1);
-  width: 50%;
-}
+  @media (min-width: 1024px) {
+    .container {
+      padding: 2rem;
+    }
+  }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-}
+  .content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
+  @media (min-width: 1280px) {
+    .content {
+      flex-direction: row;
+    }
+  }
 
-.image {
-  width: 40%;
-  border-radius: 50%;
-  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.1);
-}
+  .image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
 
-.links {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 2rem;
-}
+  @media (min-width: 1280px) {
+    .image {
+      margin-bottom: 0;
+    }
+  }
 
-.link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  width: 30%;
-  color: white;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-  margin: 0 0.5rem;
-}
+  .title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
 
-.link:hover {
-  transform: scale(1.05);
-}
+  @media (min-width: 1280px) {
+    .title {
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
 
-.link.pink {
-  background-color: #ff4081;
-}
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
 
-.link.pink:hover {
-  background-color: #f36c60;
-}
+  @media (min-width: 1280px) {
+    .links {
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 1rem;
+    }
+  }
 
-.link.violet {
-  background-color: #7c4dff;
-}
+  .link {
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 0.375rem;
+    flex: 1;
+  }
 
-.link.violet:hover {
-  background-color: #651fff;
-}
+  .link.pink {
+    background-color: #ff4081;
+  }
 
-.link.blue {
-  background-color: #448aff;
-}
+  .link.violet {
+    background-color: #7c4dff;
+  }
 
-.link.blue:hover {
-  background-color: #2979ff;
-}
+  .link.blue {
+    background-color: #448aff;
+  }
+
+  .footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 1280px) {
+    .footer {
+      flex-direction: row;
+    }
+  }
 </style>

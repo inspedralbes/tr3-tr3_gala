@@ -10,7 +10,7 @@
     mounted() {
       setTimeout(() => {
         this.$router.push({ name: 'index' }); // Reemplaza 'Home' con el nombre de la ruta de tu página principal
-      }, 10000); // 10000 milisegundos son 10 segundos
+      }, 5000); // 10000 milisegundos son 10 segundos
     },
   };
   </script>

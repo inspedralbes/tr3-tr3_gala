@@ -97,23 +97,6 @@ export default {
 
         const compra = await response.json();
         console.log('Compra realizada:', compra);
-
-        
-        const responseButacas = await fetch('http://localhost:8000/api/actualizarButacas', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (!responseButacas.ok) {
-          throw new Error('Error al actualizar las butacas');
-        }
-
-        const butacas = await responseButacas.json();
-        console.log('Butacas actualizadas:', butacas);
-
         this.$router.push(`/finalizarCompra`);
       } catch (error) {
         console.error('Error:', error);
@@ -122,8 +105,8 @@ export default {
   },
   created() {
     let storeSesion = compraStore();
-    this.selectedSeats = storeSesion.butacas; //  butacas seleccionadas de la tienda
-    this.sessioPinia = storeSesion.sessio; // sesión seleccionada de la tienda
+    this.selectedSeats = storeSesion.butacas; // Obtener las butacas seleccionadas de la tienda
+    this.sessioPinia = storeSesion.sessio; // Obtener la sesión seleccionada de la tienda
   },
 };
 </script>

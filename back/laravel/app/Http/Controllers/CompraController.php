@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use App\Models\Butaca;
-use App\Models\User; 
-use Illuminate\Support\Facades\Mail; 
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseReceipt;
 
 
@@ -24,18 +24,23 @@ class CompraController extends Controller
         $compras = Compra::where('id_user', $user->id)->get();
         return response()->json($compras);
     }
-   
+
     public function guardarCompra(Request $request)
     {
         $data = $request->all();
 
-  
         $user = User::where('email', $data['userEmail'])->first();
 
         foreach ($data['seats'] as $seatData) {
-            $butaca = new Butaca();
+            // Busca la butaca en la base de datos
+            $butaca = Butaca::find($seatData['id']);
 
-            $butaca->id = $seatData['id'];
+            // Si la butaca no existe, crea una nueva
+            if (!$butaca) {
+                $butaca = new Butaca();
+                $butaca->id = $seatData['id'];
+            }
+
             $butaca->precio = $seatData['price'];
             $butaca->ocupacion = $seatData['status'];
 
@@ -45,7 +50,7 @@ class CompraController extends Controller
 
             $compra->sesion_id = $data['sessionId'];
             $compra->butaca_id = $butaca->id;
-            $compra->id_user = $user->id; 
+            $compra->id_user = $user->id;
 
             $compra->save();
         }
@@ -58,7 +63,7 @@ class CompraController extends Controller
             }, 0),
         ];
 
-       
+
         Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
 
         return response()->json($compra);

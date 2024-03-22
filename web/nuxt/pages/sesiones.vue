@@ -1,6 +1,6 @@
 <template>
+  <div class="container">
   <div class="sesiones-list">
-    <h1>SESSIONS DEL DIA</h1>
     <div class="session-container">
       <div
         class="session-item"
@@ -26,6 +26,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -62,6 +63,9 @@ export default {
 };
 </script>
 <style scoped>
+.container{
+ margin-left: 10%;
+}
 .sesiones-list {
   max-width: 800px;
   margin: auto;
@@ -119,4 +123,11 @@ export default {
 .session-details p {
   margin: 0 0 10px 0;
 }
+@media (max-width: 600px) {
+    .session-container {
+      grid-template-columns: 1fr; /* Change to one column on smaller screens */
+      width: 80%;
+      margin-top: 5%
+    }
+  }
 </style>
