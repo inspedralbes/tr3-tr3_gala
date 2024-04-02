@@ -42,7 +42,8 @@ export default {
         id: index + 1,
         status: 'available',
         precio: 6.50
-      }))
+      })),
+      ruta: 'http://localhost:8000'
     };
   },
   methods: {
@@ -74,7 +75,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await fetch(`http://localhost:8000/api/sessions/${this.sessionId}/purchasedSeats`);
+      const response = await fetch(`${this.ruta}/api/sessions/${this.sessionId}/purchasedSeats`);
       const purchasedSeats = await response.json();
 
       for (const seat of this.availableSeats) {

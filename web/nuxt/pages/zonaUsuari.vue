@@ -4,7 +4,7 @@
       <h2>Tus compras:</h2>
       <ul>
         <li v-for="compra in compras" :key="compra.id">
-          <!-- Asume que cada compra tiene un id y un nombre -->
+ 
           {{ compra.nombre }}
         </li>
       </ul>
@@ -18,7 +18,7 @@
   const compras = ref([])
   
   onMounted(async () => {
-    const ruta = 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public'
+    const ruta = 'http://localhost:8000'
     try {
       const response = await fetch(`${this.ruta}/api/comprasPorUsuario`, {
         method: 'POST',

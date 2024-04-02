@@ -36,7 +36,7 @@ export default {
     return {
       pelicula: null,
       sessions: [],
-      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
+      ruta: 'http://localhost:8000',
     };
   },
   mounted() {

@@ -44,7 +44,7 @@ import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
-      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
+      ruta: 'http://localhost:8000',
       selectedSeats: [], 
       sessioPinia: null, 
     };
