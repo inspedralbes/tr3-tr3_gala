@@ -11,6 +11,14 @@
       </div>
     </div>
 
+    <!-- New text content -->
+    <div class="text-content">
+      <p>Bienvenido a Cinema Gala, tu destino final para las últimas películas y sesiones del día. Navega por nuestra
+        cartelera para descubrir nuevas películas, o inicia sesión para disfrutar de una experiencia personalizada. En
+        Cinema Gala, nos esforzamos por ofrecerte la mejor experiencia de cine desde la comodidad de tu hogar. ¡Disfruta
+        de la función!</p>
+    </div>
+
     <!-- Footer -->
     <div class="footer">
       <p>&copy; 2024 Cinema Gala. All rights reserved.</p>
@@ -29,115 +37,112 @@ export default {
 </script>
 
 <style scoped>
-  .container {
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
-  }
+.container {
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
 
-  @media (min-width: 640px) {
-    .container {
-      padding: 1.5rem;
-    }
-  }
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  @media (min-width: 1024px) {
-    .container {
-      padding: 2rem;
-    }
-  }
+.text-content {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
 
-  .content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+@media (min-width: 1280px) {
+  .text-content {
+    text-align: justify;
   }
+}
 
-  @media (min-width: 1280px) {
-    .content {
-      flex-direction: row;
-    }
-  }
+.image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
 
-  .image {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-  }
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #444;
+}
 
-  @media (min-width: 1280px) {
-    .image {
-      margin-bottom: 0;
-    }
-  }
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 2rem;
+}
 
-  .title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  @media (min-width: 1280px) {
-    .title {
-      text-align: left;
-      margin-bottom: 0;
-    }
-  }
-
+@media (min-width: 1280px) {
   .links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
   }
+}
 
-  @media (min-width: 1280px) {
-    .links {
-      flex-direction: row;
-      justify-content: space-around;
-      gap: 1rem;
-    }
-  }
+.link {
+  padding: 1rem;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.375rem;
+  flex: 1;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-  .link {
-    padding: 0.5rem;
-    text-align: center;
-    font-weight: 700;
-    border-radius: 0.375rem;
-    flex: 1;
-  }
+.link:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
 
-  .link.pink {
-    background-color: #ff4081;
-  }
+.link.pink {
+  background-color: #ff4081;
+}
 
-  .link.violet {
-    background-color: #7c4dff;
-  }
+.link.violet {
+  background-color: #7c4dff;
+}
 
-  .link.blue {
-    background-color: #448aff;
-  }
+.link.blue {
+  background-color: #448aff;
+}
 
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1280px) {
   .footer {
-    margin-top: auto;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: row;
   }
-
-  @media (min-width: 1280px) {
-    .footer {
-      flex-direction: row;
-    }
-  }
+}
 </style>
