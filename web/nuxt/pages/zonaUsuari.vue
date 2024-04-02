@@ -20,7 +20,7 @@
   onMounted(async () => {
     const ruta = 'http://localhost:8000'
     try {
-      const response = await fetch(`${this.ruta}/api/comprasPorUsuario`, {
+      const response = await fetch(`http://localhost:8000/api/comprasPorUsuario`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

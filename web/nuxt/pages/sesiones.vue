@@ -41,7 +41,7 @@ export default {
   },
   mounted() {
     
-    fetch(`${this.ruta}/api/sessions`) 
+    fetch(`http://localhost:8000/api/sessions`) 
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");

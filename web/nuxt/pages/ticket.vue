@@ -44,7 +44,7 @@ import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
-      ruta: 'http://localhost:8000',
+    
       selectedSeats: [], 
       sessioPinia: null, 
     };
@@ -84,7 +84,7 @@ export default {
       };
 
       try {
-        const response = await fetch(`${this.ruta}/api/efectuarCompra`, {
+        const response = await fetch(`http://localhost:8000/api/efectuarCompra`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -11,12 +11,18 @@
       </div>
     </div>
 
-    <!-- New text content -->
+    <!-- Text content -->
     <div class="text-content">
       <p>Bienvenido a Cinema Gala, tu destino final para las últimas películas y sesiones del día. Navega por nuestra
         cartelera para descubrir nuevas películas, o inicia sesión para disfrutar de una experiencia personalizada. En
         Cinema Gala, nos esforzamos por ofrecerte la mejor experiencia de cine desde la comodidad de tu hogar. ¡Disfruta
         de la función!</p>
+    </div>
+
+    <!-- New "About us" section -->
+    <div class="about-us">
+      <h2>Acerca de nosotros</h2>
+      <p>Somos un equipo de apasionados del cine dedicado a traerte las mejores películas y sesiones del día. Creemos en la magia del cine y queremos compartirla contigo.</p>
     </div>
 
     <!-- Footer -->
@@ -37,15 +43,19 @@ export default {
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+}
 .container {
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+ 
   font-family: Arial, sans-serif;
   color: #333;
   line-height: 1.6;
+  overflow: auto; 
 }
 
 .content {
@@ -91,7 +101,17 @@ export default {
   margin-top: 2rem;
   gap: 2rem;
 }
+.about-us {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
 
+@media (min-width: 1280px) {
+  .about-us {
+    text-align: justify;
+  }
+}
 @media (min-width: 1280px) {
   .links {
     flex-direction: row;
@@ -99,7 +119,16 @@ export default {
     gap: 2rem;
   }
 }
+.footer .link {
+  color: #333;
+  background-color: transparent;
+  box-shadow: none;
+}
 
+.footer .link:hover {
+  color: #666;
+  transform: none;
+}
 .link {
   padding: 1rem;
   text-align: center;

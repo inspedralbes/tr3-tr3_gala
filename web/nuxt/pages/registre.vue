@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     formPost() {
-      fetch(`${this.ruta}/api/registre`, {
+      fetch(`http://localhost:8000/api/registre`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

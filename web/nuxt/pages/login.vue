@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     formPost() {
-      fetch(`${this.ruta}/api/login`, {
+      fetch(`http://localhost:8000/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
