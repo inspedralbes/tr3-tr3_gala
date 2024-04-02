@@ -20,12 +20,13 @@
 export default {
   data() {
     return {
+      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
       movies: [],
       selectedMovie: null
     };
   },
   mounted() {
-    fetch('http://localhost:8000/api/pelicules')
+    fetch(`${this.ruta}/api/pelicules`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos de la API');

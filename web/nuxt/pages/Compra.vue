@@ -31,15 +31,15 @@ export default {
     return {
       sessioPinia: null,
       sessionId: null,
-      selectedSeats: [], // almacenar las butacas seleccionadas
+      selectedSeats: [],
     };
   },
   computed: {
     totalSeats() {
-      return this.selectedSeats.length; //  número total de butacas seleccionadas
+      return this.selectedSeats.length; 
     },
     totalPrice() {
-      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); // + precio de todas las butacas seleccionadas
+      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); 
     },
   },
   created() {

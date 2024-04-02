@@ -36,10 +36,12 @@ export default {
     return {
       pelicula: null,
       sessions: [],
+      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
     };
   },
   mounted() {
-    fetch("http://localhost:8000/api/sessions") 
+    
+    fetch(`${this.ruta}/api/sessions`) 
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener los datos de la API");

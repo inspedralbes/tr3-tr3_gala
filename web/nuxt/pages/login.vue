@@ -21,13 +21,14 @@ import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
+      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
       email: '',
       password: ''
     }
   },
   methods: {
     formPost() {
-      fetch('http://localhost:8000/api/login', {
+      fetch(`${this.ruta}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -25,6 +25,7 @@
 export default {
   data() {
     return {
+      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
       username: '',
       email: '',
       password: ''
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     formPost() {
-      fetch('http://localhost:8000/api/registre', {
+      fetch(`${this.ruta}/api/registre`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

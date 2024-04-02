@@ -44,8 +44,9 @@ import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
-      selectedSeats: [], // Butacas seleccionadas
-      sessioPinia: null, // Sesión seleccionada
+      ruta: 'http://tr3.a19galdelred.daw.inspedralbes.cat/laravel/public',
+      selectedSeats: [], 
+      sessioPinia: null, 
     };
   },
   computed: {
@@ -63,10 +64,10 @@ export default {
       return this.sessioPinia ? this.sessioPinia.hora : "Hora no seleccionada";
     },
     totalSeats() {
-      return this.selectedSeats.length; // Número total de butacas seleccionadas
+      return this.selectedSeats.length; 
     },
     totalPrice() {
-      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); // Suma el precio de todas las butacas seleccionadas
+      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); 
     },
   },
   methods: {
@@ -83,7 +84,7 @@ export default {
       };
 
       try {
-        const response = await fetch('http://localhost:8000/api/efectuarCompra', {
+        const response = await fetch(`${this.ruta}/api/efectuarCompra`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
