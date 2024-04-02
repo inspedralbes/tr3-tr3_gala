@@ -49,7 +49,7 @@ export default {
 <style scoped>
   .container {
     padding: 4px 2px;
-    background-color: #FFD7E8;
+    background-color: #fff;
     width: 100vw;
     height: 100vh;
   }
@@ -58,7 +58,7 @@ export default {
     font-weight: bold;
     text-align: center;
     margin-bottom: 4px;
-    color: white;
+    color: #FFD7E8;
   }
   .grid {
     display: grid;

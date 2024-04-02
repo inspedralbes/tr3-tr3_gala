@@ -30,7 +30,7 @@ class CompraController extends Controller
         $data = $request->all();
 
         $user = User::where('email', $data['userEmail'])->first();
-
+        
         foreach ($data['seats'] as $seatData) {
             // Busca la butaca en la base de datos
             $butaca = Butaca::find($seatData['id']);
