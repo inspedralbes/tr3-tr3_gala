@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <div class="cinema-seats">
-     
       <component
         v-for="seat in availableSeats"
         :key="seat.id"
-        :is="getSeatComponent(seat.status)"
+        :is="getSeatComponent(seat)"
         @click="toggleSeatStatus(seat)"
         :id="'seat_' + seat.id"
         class="svg-seat"
@@ -48,7 +47,7 @@ export default {
   },
   methods: {
     toggleSeatStatus(seat) {
-      if (seat.status === 'available') {
+      if (seat.status === 'available' || seat.status === 'vip') {
         seat.status = 'selected';
         this.$emit('seatSelected', seat);
       } else if (seat.status === 'selected') {
@@ -56,8 +55,11 @@ export default {
         this.$emit('seatDeselected', seat);
       }
     },
-    getSeatComponent(status) {
-      switch (status) {
+    getSeatComponent(seat) {
+      if (Math.floor((seat.id - 1) / 8) === 4) { // Si el asiento está en la fila central
+        return 'ButacaVIP';
+      }
+      switch (seat.status) {
         case 'selected':
           return 'ButacaSeleccionada';
         case 'available':

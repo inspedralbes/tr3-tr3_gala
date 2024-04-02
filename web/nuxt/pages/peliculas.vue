@@ -14,8 +14,16 @@
       </div>
     </div>
     <!-- Modal code -->
+    <div v-if="selectedMovie" class="modal" @click="selectedMovie = null">
+      <div class="modal-content" @click.stop>
+        <h2>{{ selectedMovie.titol }}</h2>
+        <p>{{ selectedMovie.descripcio }}</p>
+        <button @click="selectedMovie= null" class="buttonModal">Cerrar</button>
+      </div>
+    </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -46,6 +54,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
   .container {
     padding: 4px 2px;
@@ -101,5 +110,35 @@ export default {
   .text {
     color: #555;
   }
-  /* Add media queries for larger screens */
+  .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.buttonModal {
+  background-color: #ffaace;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 </style>

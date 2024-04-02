@@ -13,16 +13,16 @@
 
     <!-- Text content -->
     <div class="text-content">
-      <p>Bienvenido a Cinema Gala, tu destino final para las últimas películas y sesiones del día. Navega por nuestra
-        cartelera para descubrir nuevas películas, o inicia sesión para disfrutar de una experiencia personalizada. En
-        Cinema Gala, nos esforzamos por ofrecerte la mejor experiencia de cine desde la comodidad de tu hogar. ¡Disfruta
-        de la función!</p>
+      <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la nostra
+        cartellera per descobrir noves pel·lícules, o inicieu sessió per gaudir d'una experiència personalitzada. A
+        Cinema Gala, ens esforcem per oferir-te la millor experiència de cinema des de la comoditat de casa teva. Gaudeix
+        de la funció!</p>
     </div>
 
     <!-- New "About us" section -->
     <div class="about-us">
-      <h2>Acerca de nosotros</h2>
-      <p>Somos un equipo de apasionados del cine dedicado a traerte las mejores películas y sesiones del día. Creemos en la magia del cine y queremos compartirla contigo.</p>
+      <h2>Sobre Nosaltres</h2>
+      <p>Som un equip d'apassionats del cinema dedicat a portar-te les millors pel·lícules i sessions del dia. Creiem a la màgia del cinema i volem compartir-la amb tu.</p>
     </div>
 
     <!-- Footer -->
