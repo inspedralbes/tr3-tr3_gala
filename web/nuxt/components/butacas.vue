@@ -57,6 +57,7 @@ export default {
     },
     getSeatComponent(seat) {
       if (Math.floor((seat.id - 1) / 8) === 4) { // Si el asiento está en la fila central
+        seat.precio = 9.50;
         return 'ButacaVIP';
       }
       switch (seat.status) {

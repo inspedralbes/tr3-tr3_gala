@@ -8,7 +8,7 @@
       </tr>
       <tr>
         <td>Película:</td>
-        <td>{{ movieTitle }}</td>
+        <td>Moana</td>
       </tr>
       <tr>
         <td>Sesión:</td>
@@ -34,7 +34,7 @@
         <td>{{ totalPrice }}€</td>
       </tr>
     </table>
-    <button @click="efectuarCompra()">Comprar</button>
+    <button @click="efectuarCompra()" class="buttonCompra">Comprar</button>
   </div>
 </template>
 
@@ -44,9 +44,9 @@ import { compraStore } from "../stores/compra.js";
 export default {
   data() {
     return {
-    
-      selectedSeats: [], 
-      sessioPinia: null, 
+
+      selectedSeats: [],
+      sessioPinia: null,
     };
   },
   computed: {
@@ -64,10 +64,10 @@ export default {
       return this.sessioPinia ? this.sessioPinia.hora : "Hora no seleccionada";
     },
     totalSeats() {
-      return this.selectedSeats.length; 
+      return this.selectedSeats.length;
     },
     totalPrice() {
-      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0); 
+      return this.selectedSeats.reduce((total, seat) => total + seat.precio, 0);
     },
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
           status: seat.status
         })),
         sessionId: this.sessioPinia.id,
-        userEmail: storeSesion.email, 
+        userEmail: storeSesion.email,
       };
 
       try {
@@ -140,4 +140,19 @@ export default {
   margin-bottom: 5px;
 }
 
+.buttonCompra {
+
+  background-color: #ffaace;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
 </style>
