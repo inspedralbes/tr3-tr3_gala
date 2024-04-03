@@ -6,6 +6,7 @@ use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AuthController;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +41,5 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 }); 
+
+Route::get('/user', [AuthController::class, 'getUser']);

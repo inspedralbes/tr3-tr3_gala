@@ -22,14 +22,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'User already exists'], 409);
         }
     
-        // Si no existe un usuario, crea uno nuevo y lo guarda en la base de datos.
+        
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
     
-        // Genera un token para el usuario.
+        
         $token = JWTAuth::fromUser($user);
     
         
@@ -51,5 +51,17 @@ class AuthController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('token'));
+    }
+
+    public function getUser(Request $request)
+    {
+        $email = $request->query('email');
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            return response()->json($user->name);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
     }
 }

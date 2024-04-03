@@ -7,7 +7,7 @@
       <div class="links">
         <router-link to="/peliculas" class="link pink">Cartelera</router-link>
         <router-link to="/sesiones" class="link violet">Sessio del Dia</router-link>
-        <router-link to="/index" class="link blue">Login</router-link>
+        <router-link to="/index2" class="link blue">Login</router-link>
       </div>
     </div>
 
