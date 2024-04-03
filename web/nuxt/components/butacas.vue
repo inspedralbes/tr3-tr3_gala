@@ -1,14 +1,8 @@
 <template>
   <div class="container">
     <div class="cinema-seats">
-      <component
-        v-for="seat in availableSeats"
-        :key="seat.id"
-        :is="getSeatComponent(seat)"
-        @click="toggleSeatStatus(seat)"
-        :id="'seat_' + seat.id"
-        class="svg-seat"
-      />
+      <component v-for="seat in availableSeats" :key="seat.id" :is="getSeatComponent(seat)"
+        @click="toggleSeatStatus(seat)" :id="'seat_' + seat.id" class="svg-seat" />
     </div>
     <div class="screen">
       <h1 class="screen-title">Pantalla</h1>
@@ -40,7 +34,8 @@ export default {
       availableSeats: Array.from({ length: 80 }, (_, index) => ({
         id: index + 1,
         status: 'available',
-        precio: 6.50
+        precio: 6.50,
+        previousStatus: null
       })),
       ruta: 'http://localhost:8000'
     };
@@ -48,16 +43,18 @@ export default {
   methods: {
     toggleSeatStatus(seat) {
       if (seat.status === 'available' || seat.status === 'vip') {
+        seat.previousStatus = seat.status;
         seat.status = 'selected';
         this.$emit('seatSelected', seat);
       } else if (seat.status === 'selected') {
-        seat.status = 'available';
+        seat.status = seat.previousStatus;
         this.$emit('seatDeselected', seat);
       }
     },
     getSeatComponent(seat) {
-      if (Math.floor((seat.id - 1) / 8) === 4) { // Si el asiento está en la fila central
+      if (Math.floor((seat.id - 1) / 8) === 4) { 
         seat.precio = 9.50;
+        seat.status = 'vip'; 
         return 'ButacaVIP';
       }
       switch (seat.status) {
@@ -67,8 +64,10 @@ export default {
           return 'ButacaLliure';
         case 'occupied':
           return 'ButacaOcupada';
+        case 'vip':
+          return 'ButacaVIP'; 
         default:
-          return 'ButacaLliure'; 
+          return 'ButacaLliure';
       }
     }
   },
@@ -87,9 +86,8 @@ export default {
         }
       }
     } catch (error) {
-    console.error('Error:', error);
-  }
-
+      console.error('Error:', error);
+    }
   }
 };
 </script>
@@ -117,7 +115,7 @@ export default {
 }
 
 .cinema-seats .svg-seat {
-  width: 40px; /* Ajusta el ancho según tus necesidades */
+  width: 40px;
   height: auto;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">CARTELERA</h1>
+    <input type="text" v-model="filter" placeholder="Filtrar por título" class="busca">
     <div class="grid">
       <div v-for="movie in paginatedMovies" :key="movie.id" class="card" @click="selectedMovie = movie">
         <div class="image-container">
@@ -34,17 +35,25 @@ export default {
       movies: [],
       selectedMovie: null,
       currentPage: 0,
-      itemsPerPage: 6 // Change this to the number of items you want per page
+      itemsPerPage: 6,
+      filter: ''
     };
   },
   computed: {
+    filteredMovies() {
+      if (this.filter) {
+        return this.movies.filter(movie => movie.titol.toLowerCase().includes(this.filter.toLowerCase()));
+      } else {
+        return this.movies;
+      }
+    },
     paginatedMovies() {
       const start = this.currentPage * this.itemsPerPage;
       const end = start + this.itemsPerPage;
-      return this.movies.slice(start, end);
+      return this.filteredMovies.slice(start, end);
     },
     pageCount() {
-      return Math.ceil(this.movies.length / this.itemsPerPage);
+      return Math.ceil(this.filteredMovies.length / this.itemsPerPage);
     }
   },
   methods: {
@@ -96,7 +105,7 @@ export default {
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  color: #FFD7E8;
+  color: #ff9fc7;
   margin-top: 20px;
 }
 
@@ -117,6 +126,7 @@ export default {
   transition: transform 0.3s ease-in-out;
   max-width: 300px;
   width: 100%;
+  min-width: 150px; /* Add this line */
 }
 
 .card:hover {
@@ -183,4 +193,29 @@ export default {
   cursor: pointer;
   border-radius: 5px;
 }
+.busca{
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+
+}
+@media (max-width: 765px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Styles for screens smaller than 450px */
+  @media (max-width: 450px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  @media(min-width: 950px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 </style>
