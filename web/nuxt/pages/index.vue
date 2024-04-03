@@ -20,13 +20,22 @@
   </div>
 </template>
 <script>
+import { io } from "socket.io-client";
 import { compraStore } from "../stores/compra.js";
+
 export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      socket: null
     }
+  },
+  created() {
+    this.socket = io("http://localhost:8000");
+    this.socket.on("connect", () => {
+      console.log("Connected to server with id", this.socket.id);
+    });
   },
   methods: {
     formPost() {
@@ -46,16 +55,17 @@ export default {
             compraStore().email = this.email;
             compraStore().movieTitle = "Moana";
 
-            
             this.fetchUserDetails(this.email, data.token);
 
             alert('Has iniciat sessió correctament!');
             this.$router.push('/index2');
+
+          
+            this.socket.emit("user connected", { id: this.socket.id, name: this.email });
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
           }
         })
-   
     },
     fetchUserDetails(email, token) {
       fetch(`http://localhost:8000/api/user?email=${email}`, {

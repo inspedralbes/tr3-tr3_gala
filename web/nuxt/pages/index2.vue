@@ -11,21 +11,32 @@
       </div>
     </div>
 
-    <!-- Text content -->
+    
     <div class="text-content">
-      <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la nostra
+      <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la
+        nostra
         cartellera per descobrir noves pel·lícules, o inicieu sessió per gaudir d'una experiència personalitzada. A
-        Cinema Gala, ens esforcem per oferir-te la millor experiència de cinema des de la comoditat de casa teva. Gaudeix
+        Cinema Gala, ens esforcem per oferir-te la millor experiència de cinema des de la comoditat de casa teva.
+        Gaudeix
         de la funció!</p>
     </div>
 
-    <!-- New "About us" section -->
+
     <div class="about-us">
       <h2>Sobre Nosaltres</h2>
-      <p>Som un equip d'apassionats del cinema dedicat a portar-te les millors pel·lícules i sessions del dia. Creiem a la màgia del cinema i volem compartir-la amb tu.</p>
+      <p>Som un equip d'apassionats del cinema dedicat a portar-te les millors pel·lícules i sessions del dia. Creiem a
+        la màgia del cinema i volem compartir-la amb tu.</p>
+    </div>
+    
+    <div class="connected-users">
+      <h2>Usuarios Conectados</h2>
+      <ul>
+        <li v-for="user in compraStore.usuariosConectados" :key="user">
+          {{ user }}
+        </li>
+      </ul>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
       <p>&copy; 2024 Cinema Gala. All rights reserved.</p>
       <div class="links">
@@ -37,6 +48,7 @@
 </template>
 
 <script>
+import { compraStore } from "../stores/compra.js";
 export default {
 
 }
@@ -46,16 +58,17 @@ export default {
 body {
   margin: 0;
 }
+
 .container {
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
- 
+
   font-family: Arial, sans-serif;
   color: #333;
   line-height: 1.6;
-  overflow: auto; 
+  overflow: auto;
 }
 
 .content {
@@ -101,6 +114,7 @@ body {
   margin-top: 2rem;
   gap: 2rem;
 }
+
 .about-us {
   padding: 2rem;
   text-align: center;
@@ -112,6 +126,7 @@ body {
     text-align: justify;
   }
 }
+
 @media (min-width: 1280px) {
   .links {
     flex-direction: row;
@@ -119,6 +134,22 @@ body {
     gap: 2rem;
   }
 }
+.connected-users {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.connected-users ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.connected-users li {
+  margin-bottom: 1rem;
+}
+
+
 .footer .link {
   color: #333;
   background-color: transparent;
@@ -129,6 +160,7 @@ body {
   color: #666;
   transform: none;
 }
+
 .link {
   padding: 1rem;
   text-align: center;
