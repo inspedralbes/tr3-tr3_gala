@@ -32,10 +32,10 @@ class CompraController extends Controller
         $user = User::where('email', $data['userEmail'])->first();
         
         foreach ($data['seats'] as $seatData) {
-            // Busca la butaca en la base de datos
+            
             $butaca = Butaca::find($seatData['id']);
 
-            // Si la butaca no existe, crea una nueva
+            
             if (!$butaca) {
                 $butaca = new Butaca();
                 $butaca->id = $seatData['id'];
@@ -65,7 +65,7 @@ class CompraController extends Controller
 
 
         Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
-
+        
         return response()->json($compra);
     }
 
