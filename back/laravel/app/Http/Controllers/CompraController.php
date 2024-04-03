@@ -8,7 +8,7 @@ use App\Models\Butaca;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseReceipt;
-
+use GuzzleHttp\Client; 
 
 class CompraController extends Controller
 {
@@ -65,7 +65,12 @@ class CompraController extends Controller
 
 
         Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
-        
+        $client = new Client(); // GuzzleHttp\Client
+        $res = $client->post('http://localhost:4520/seatPurchased', [
+            'json' => [
+                'seat' => $seatData
+            ]
+        ]);
         return response()->json($compra);
     }
 
