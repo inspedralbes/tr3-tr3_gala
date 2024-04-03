@@ -20,7 +20,7 @@
       <!-- Elementos del menú principal -->
       <nav class="block lg:gap-x-12">
         <ul class="flex space-x-4">
-          <li><nuxt-link to="/" class="font-bold text-white">Inicio</nuxt-link></li>
+          <li><nuxt-link to="/index2" class="font-bold text-white">Inicio</nuxt-link></li>
           <li><nuxt-link to="/peliculas" class="font-bold text-white">Cartelera</nuxt-link></li>
           <li><nuxt-link to="/sesiones" class="font-bold text-white">Sesión del Día</nuxt-link></li>
         </ul>

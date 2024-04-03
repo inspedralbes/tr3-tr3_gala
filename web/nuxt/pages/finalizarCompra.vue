@@ -10,7 +10,7 @@
 export default {
   mounted() {
     setTimeout(() => {
-      this.$router.push({ name: 'index' }); 
+      this.$router.push({ name: 'index2' }); 
     }, 3000); 
   },
 };

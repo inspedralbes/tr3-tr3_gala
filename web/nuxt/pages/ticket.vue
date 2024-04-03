@@ -106,8 +106,8 @@ export default {
   },
   created() {
     let storeSesion = compraStore();
-    this.selectedSeats = storeSesion.butacas; // Obtener las butacas seleccionadas de la tienda
-    this.sessioPinia = storeSesion.sessio; // Obtener la sesión seleccionada de la tienda
+    this.selectedSeats = storeSesion.butacas; 
+    this.sessioPinia = storeSesion.sessio; 
   },
 };
 </script>

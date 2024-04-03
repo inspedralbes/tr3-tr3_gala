@@ -31,11 +31,8 @@ export default {
       socket: null
     }
   },
-  created() {
-    this.socket = io("http://localhost:8000");
-    this.socket.on("connect", () => {
-      console.log("Connected to server with id", this.socket.id);
-    });
+  mounted() {
+    this.socket = io("http://localhost:4520");
   },
   methods: {
     formPost() {
@@ -60,7 +57,7 @@ export default {
             alert('Has iniciat sessió correctament!');
             this.$router.push('/index2');
 
-          
+
             this.socket.emit("user connected", { id: this.socket.id, name: this.email });
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
@@ -78,7 +75,8 @@ export default {
         .then(response => response.json())
         .then(data => {
           if (data) {
-            compraStore.agregarUsuarioConectado(data);
+            const store = compraStore();
+            store.agregarUsuarioConectado(data);
           }
         })
     }

@@ -65,12 +65,7 @@ class CompraController extends Controller
 
 
         Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
-        $client = new Client(); // GuzzleHttp\Client
-        $res = $client->post('http://localhost:4520/seatPurchased', [
-            'json' => [
-                'seat' => $seatData
-            ]
-        ]);
+       
         return response()->json($compra);
     }
 
