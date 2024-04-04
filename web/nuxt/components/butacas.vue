@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      availableSeats: Array.from({ length: 80 }, (_, index) => ({
+      availableSeats: Array.from({ length: 84 }, (_, index) => ({
         id: index + 1,
         status: 'available',
         precio: 6.50,
@@ -52,20 +52,17 @@ export default {
       }
     },
     getSeatComponent(seat) {
-      if (Math.floor((seat.id - 1) / 8) === 4) { 
+      if (Math.floor((seat.id - 1) / 14) === 2) {
         seat.precio = 9.50;
-        seat.status = 'vip'; 
-        return 'ButacaVIP';
+        seat.isVip = true;
       }
       switch (seat.status) {
         case 'selected':
           return 'ButacaSeleccionada';
         case 'available':
-          return 'ButacaLliure';
+          return seat.isVip ? 'ButacaVIP' : 'ButacaLliure';
         case 'occupied':
           return 'ButacaOcupada';
-        case 'vip':
-          return 'ButacaVIP'; 
         default:
           return 'ButacaLliure';
       }
