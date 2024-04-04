@@ -14,25 +14,25 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-       
+
         $existingUser = User::where('email', $request->input('email'))->first();
-    
+
         if ($existingUser) {
 
             return response()->json(['error' => 'User already exists'], 409);
         }
-    
-        
+
+
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
-    
-        
+
+
         $token = JWTAuth::fromUser($user);
-    
-        
+
+
         return response()->json(compact('token'));
     }
 
@@ -52,7 +52,11 @@ class AuthController extends Controller
 
         return response()->json(compact('token'));
     }
-
+    public function logout(Request $request)
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return response()->json(['message' => 'User successfully logged out']);
+    }
     public function getUser(Request $request)
     {
         $email = $request->query('email');

@@ -53,11 +53,8 @@ export default {
             compraStore().movieTitle = "Moana";
 
             this.fetchUserDetails(this.email, data.token);
-
             alert('Has iniciat sessió correctament!');
             this.$router.push('/index2');
-
-
             this.socket.emit("user connected", { id: this.socket.id, name: this.email });
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);

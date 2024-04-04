@@ -35,7 +35,7 @@ Route::get('/sessions/{sessionId}/purchasedSeats', [SessionsController::class, '
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 
 /**RUTES DE AUTENTICACIO */
-Route::post('registre', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
-
+Route::post('/registre', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout',AuthController::class, 'logout');
 Route::get('/user', [AuthController::class, 'getUser']);
