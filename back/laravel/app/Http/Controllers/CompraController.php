@@ -8,7 +8,7 @@ use App\Models\Butaca;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseReceipt;
-use GuzzleHttp\Client; 
+use GuzzleHttp\Client;
 
 class CompraController extends Controller
 {
@@ -30,12 +30,12 @@ class CompraController extends Controller
         $data = $request->all();
 
         $user = User::where('email', $data['userEmail'])->first();
-        
+
         foreach ($data['seats'] as $seatData) {
-            
+
             $butaca = Butaca::find($seatData['id']);
 
-            
+
             if (!$butaca) {
                 $butaca = new Butaca();
                 $butaca->id = $seatData['id'];
@@ -65,7 +65,7 @@ class CompraController extends Controller
 
 
         Mail::to($user->email)->send(new PurchaseReceipt($dataSend));
-       
+
         return response()->json($compra);
     }
 

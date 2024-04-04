@@ -28,6 +28,7 @@
           <li><nuxt-link to="/index2" class="font-bold text-white">Inicio</nuxt-link></li>
           <li><nuxt-link to="/peliculas" class="font-bold text-white">Cartelera</nuxt-link></li>
           <li><nuxt-link to="/sesiones" class="font-bold text-white">Sesión del Día</nuxt-link></li>
+          <li><nuxt-link to="/zonaUsuari" class="font-bold text-white">Zona Usuari</nuxt-link></li>
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
