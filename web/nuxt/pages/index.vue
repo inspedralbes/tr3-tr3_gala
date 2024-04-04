@@ -21,7 +21,7 @@
 </template>
 <script>
 import { io } from "socket.io-client";
-import { compraStore } from "../stores/compra.js";
+import { compraStore} from "../stores/compra.js";
 
 export default {
   data() {
@@ -33,6 +33,7 @@ export default {
   },
   mounted() {
     this.socket = io("http://localhost:4520");
+
   },
   methods: {
     formPost() {
@@ -55,7 +56,7 @@ export default {
             this.fetchUserDetails(this.email, data.token);
             alert('Has iniciat sessió correctament!');
             this.$router.push('/index2');
-            this.socket.emit("user connected", { id: this.socket.id, name: this.email });
+          
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
           }
@@ -74,6 +75,8 @@ export default {
           if (data) {
             const store = compraStore();
             store.agregarUsuarioConectado(data);
+            store.tokenUsuario = token;
+            this.socket.emit("user connected", { id: this.socket.id, name: data });
           }
         })
     }

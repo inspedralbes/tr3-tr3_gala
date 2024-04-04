@@ -7,11 +7,13 @@ export const compraStore = defineStore('store', {
     email: null,
     usuariosConectados: [],
     usuarioActual: null,
+    tokenUsuario: null
   }),
   actions: {
-    
     agregarUsuarioConectado(nombre) {
-      this.usuariosConectados.push(nombre);
+      if (!this.usuariosConectados.includes(nombre)) {
+        this.usuariosConectados.push(nombre);
+      }
     },
   },
 });

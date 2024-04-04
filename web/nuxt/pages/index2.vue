@@ -7,7 +7,14 @@
       <div class="links">
         <router-link to="/peliculas" class="link pink">Cartelera</router-link>
         <router-link to="/sesiones" class="link violet">Sessio del Dia</router-link>
+        <div v-if="compraStore().email!=null"> 
         <router-link to="/index2" class="link blue">Login</router-link>
+        </div>
+        <div v-else>
+
+          <!--<router-link to="/index2" class="link blue">Logout</router-link>-->
+        </div>
+        
       </div>
     </div>
 
@@ -31,7 +38,7 @@
     <div class="connected-users">
       <h2>Usuarios Conectados</h2>
       <ul>
-        <li v-for="user in compraStore.usuariosConectados" :key="user">
+        <li v-for="user in compraStore().usuariosConectados" :key="user">
           {{ user }}
         </li>
       </ul>
