@@ -1,6 +1,6 @@
 <template>
   <header class="cine-header w-12/12 mx-auto block" :style="{ backgroundColor: '#ff4081' }">
-    <!-- Menú de navegación -->
+    <!-- Menú de navegació -->
     <nav class="cine-menu mx-auto flex max-w-5xl items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
         <nuxt-link to="/" class="-m-1.5 p-1.5">
@@ -22,18 +22,21 @@
           <!-- Icono de menú para dispositivos móviles -->
         </button>
       </div>
-      <!-- Elementos del menú principal -->
+      <!-- menú principal -->
       <nav class="block lg:gap-x-12">
         <ul class="flex space-x-4">
-          <li><nuxt-link to="/index2" class="font-bold text-white">Inicio</nuxt-link></li>
-          <li><nuxt-link to="/peliculas" class="font-bold text-white">Cartelera</nuxt-link></li>
-          <li><nuxt-link to="/sesiones" class="font-bold text-white">Sesión del Día</nuxt-link></li>
-          <li><nuxt-link to="/zonaUsuari" class="font-bold text-white">Zona Usuari</nuxt-link></li>
+          <li><nuxt-link :class="{ 'pointer-events-none opacity-50': !compraStore().email }" to="/index2"
+              class="font-bold text-white">Inicio</nuxt-link></li>
+          <li><nuxt-link :class="{ 'pointer-events-none opacity-50': !compraStore().email }" to="/peliculas"
+              class="font-bold text-white">Cartelera</nuxt-link></li>
+          <li><nuxt-link :class="{ 'pointer-events-none opacity-50': !compraStore().email }" to="/sesiones"
+              class="font-bold text-white">Sesión del Día</nuxt-link></li>
+          <li v-if="compraStore().email != null"><nuxt-link to="/zonaUsuari" class="font-bold text-white">Zona
+              Usuari</nuxt-link></li>
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a v-if="compraStore().email" href="#" @click="logout"
-          class="text-sm font-bold leading-6 text-white lg:hidden">
+        <a v-if="compraStore().email" href="#" @click="logout" class="text-sm font-bold leading-6 text-white lg:hidden">
           Log out <span aria-hidden="true">&rarr;</span>
         </a>
         <a v-else href="/Login" class="text-sm font-bold leading-6 text-white">
@@ -41,7 +44,7 @@
         </a>
       </div>
     </nav>
-    <!-- Menú desplegable para dispositivos móviles -->
+    <!-- Menú desplegable para móviles -->
     <Dialog as="div" class="fixed inset-0 z-10 lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel
@@ -56,9 +59,9 @@
           </button>
         </div>
         <div class="py-6">
-          <nuxt-link v-if="compraStore.state.email" :to="'/zonaUsuari/' + compraStore.state.email"
+          <nuxt-link v-if="compraStore().email != null" :to="'/zonaUsuari/' + compraStore().email"
             class="font-bold text-white">
-            {{ compraStore.state.email }} <span aria-hidden="true">&rarr;</span>
+            {{ compraStore().email }} <span aria-hidden="true">&rarr;</span>
           </nuxt-link>
           <nuxt-link v-else to="/login" class="font-bold text-white">Login</nuxt-link>
         </div>
@@ -83,7 +86,7 @@ export default {
     const tancarSessio = async () => {
       let store = compraStore();
       let url = "http://localhost:8000/api/logout"
-     
+
       let response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -95,7 +98,7 @@ export default {
       let jsonResponse = await response.json()
       store.email = null
       store.tokenUsuario = null
-      
+
     }
 
     return {

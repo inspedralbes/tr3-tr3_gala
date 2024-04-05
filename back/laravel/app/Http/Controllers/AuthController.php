@@ -27,6 +27,7 @@ class AuthController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'role' => $request->input('role', 'user'), // Default to 'user' if no role is provided
         ]);
 
 
@@ -63,7 +64,21 @@ class AuthController extends Controller
         $user = User::where('email', $email)->first();
 
         if ($user) {
-            return response()->json($user->name);
+            return response()->json(['name' => $user->name, 'role' => $user->role]);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
+    public function makeAdmin(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+    
+        if ($user) {
+            $user->role = 'admin';
+            $user->save();
+    
+            return response()->json(['message' => 'User role updated to admin']);
         } else {
             return response()->json(['error' => 'User not found'], 404);
         }
