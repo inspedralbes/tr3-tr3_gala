@@ -69,6 +69,17 @@ class AuthController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
     }
+    public function getInfoUser(Request $request)
+    {
+        $email = $request->query('email');
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            return response()->json(['name' => $user->name, 'role' => $user->role]);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
     public function makeAdmin(Request $request)
     {
         $email = $request->input('email');
