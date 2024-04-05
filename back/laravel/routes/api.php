@@ -40,3 +40,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/user', [AuthController::class, 'getUser']);
 Route::get('/user', [AuthController::class, 'getUser']);
+Route::put('/updateUser', [AuthController::class, 'updateUser']);

@@ -18,15 +18,14 @@
         </div>
         <!-- Modal-->
         <div v-if="editing" class="modal" @click="editing = false">
-        <div class="modal-content" @click.stop>
-            <label class="modal-label" :for="editing">{{ editing }}</label>
-            <input class="modal-input" :id="editing" v-model="newField" type="text">
-            <button class="modal-button" @click="saveChanges">Guardar Cambios</button>
+            <div class="modal-content" @click.stop>
+                <label class="modal-label" :for="editing">{{ editing }}</label>
+                <input class="modal-input" :id="editing" v-model="newField" type="text">
+                <button class="modal-button" @click="saveChanges">Guardar Cambios</button>
+            </div>
         </div>
     </div>
-    </div>
 </template>
-
 <script>
 import { compraStore } from "../stores/compra.js";
 export default {
@@ -46,11 +45,28 @@ export default {
             this.newField = this.userData[field];
             this.editing = field;
         },
-        saveChanges() {
+        async saveChanges() {
             console.log('saveChanges called');
-            // llamar a la API para actualizar el campo en la base de datos
+
+            const updatedUserData = {
+                email: this.userData.email,
+                [this.editing]: this.newField
+            };
+
             this.userData[this.editing] = this.newField;
             this.editing = null;
+
+            const response = await fetch('http://localhost:8000/api/updateUser', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedUserData),
+            });
+
+            if (!response.ok) {
+                console.error('Error updating user:', response.statusText);
+            }
         }
     }
 };

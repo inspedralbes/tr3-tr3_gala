@@ -84,12 +84,35 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $user = User::where('email', $email)->first();
-    
+
         if ($user) {
             $user->role = 'admin';
             $user->save();
-    
+
             return response()->json(['message' => 'User role updated to admin']);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
+    public function updateUser(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            $name = $request->input('name');
+            if ($name !== null) {
+                $user->name = $name;
+            }
+
+            $newEmail = $request->input('newEmail');
+            if ($newEmail !== null) {
+                $user->email = $newEmail;
+            }
+
+            $user->save();
+
+            return response()->json(['message' => 'User updated successfully']);
         } else {
             return response()->json(['error' => 'User not found'], 404);
         }
