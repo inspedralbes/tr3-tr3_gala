@@ -64,7 +64,7 @@ class AuthController extends Controller
         $user = User::where('email', $email)->first();
 
         if ($user) {
-            return response()->json(['name' => $user->name, 'role' => $user->role]);
+            return response()->json($user);
         } else {
             return response()->json(['error' => 'User not found'], 404);
         }

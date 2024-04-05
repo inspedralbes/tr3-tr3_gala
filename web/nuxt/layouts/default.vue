@@ -33,10 +33,12 @@
               class="font-bold text-white">Sesión del Día</nuxt-link></li>
           <li v-if="compraStore().email != null"><nuxt-link to="/zonaUsuari" class="font-bold text-white">Zona
               Usuari</nuxt-link></li>
+              <li v-if="compraStore().usuarioActual.role != 'user'"><nuxt-link to="/zonaAdmin" class="font-bold text-white">Zona
+              Admin</nuxt-link></li>
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a v-if="compraStore().email" href="#" @click="logout" class="text-sm font-bold leading-6 text-white lg:hidden">
+        <a v-if="compraStore().email" href="#" @click="tancarSessio" class="text-sm font-bold leading-6 text-white lg:hidden">
           Log out <span aria-hidden="true">&rarr;</span>
         </a>
         <a v-else href="/Login" class="text-sm font-bold leading-6 text-white">
@@ -44,7 +46,7 @@
         </a>
       </div>
     </nav>
-    <!-- Menú desplegable para móviles -->
+    <!-- Menú desplegable para dispositivos móviles -->
     <Dialog as="div" class="fixed inset-0 z-10 lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel
@@ -98,7 +100,7 @@ export default {
       let jsonResponse = await response.json()
       store.email = null
       store.tokenUsuario = null
-
+      store.usuariosConectados = []
     }
 
     return {

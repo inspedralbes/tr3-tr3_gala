@@ -14,7 +14,7 @@
         <input type="password" id="password" v-model="password" class="w-full p-2 border border-gray-300 rounded text-lg">
       </div>
       <div class="mb-2">
-        <nuxt-link to="/login" class="text-blue-500 hover:underline">Tens compte? Inicia Sessió!</nuxt-link>
+        <nuxt-link to="/" class="text-blue-500 hover:underline">Tens compte? Inicia Sessió!</nuxt-link>
       </div>
       <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded text-lg hover:bg-blue-700 transition-colors duration-300">Registrarse</button>
     </form>
@@ -49,7 +49,7 @@ export default {
           if (data.token) {
             
             alert("T'has registrat correctament!");
-            this.$router.push('/login');
+            this.$router.push('/');
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
           }

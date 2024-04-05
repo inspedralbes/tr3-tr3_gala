@@ -1,24 +1,23 @@
 <template>
   <div class="container">
-    <!-- Existing content -->
+   
     <div class="content">
       <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
       <h1 class="title">CINEMA GALA</h1>
       <div class="links">
         <router-link to="/peliculas" class="link pink">Cartelera</router-link>
         <router-link to="/sesiones" class="link violet">Sessio del Dia</router-link>
-        <div v-if="compraStore().email!=null"> 
-        <router-link to="/index2" class="link blue">Login</router-link>
+        <div v-if="!compraStore().email">
+          <router-link to="/index2" class="link blue">Login</router-link>
         </div>
         <div v-else>
-
           <!--<router-link to="/index2" class="link blue">Logout</router-link>-->
         </div>
-        
+
       </div>
     </div>
 
-    
+
     <div class="text-content">
       <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la
         nostra
@@ -34,12 +33,12 @@
       <p>Som un equip d'apassionats del cinema dedicat a portar-te les millors pel·lícules i sessions del dia. Creiem a
         la màgia del cinema i volem compartir-la amb tu.</p>
     </div>
-    
+
     <div class="connected-users">
       <h2>Usuarios Conectados</h2>
       <ul>
-        <li v-for="user in compraStore().usuariosConectados" :key="user">
-          {{ user }}
+        <li v-for="user in compraStore().usuariosConectados" :key="user.id">
+          {{ user.name }}
         </li>
       </ul>
     </div>
@@ -141,6 +140,7 @@ body {
     gap: 2rem;
   }
 }
+
 .connected-users {
   padding: 2rem;
   text-align: center;

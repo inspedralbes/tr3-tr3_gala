@@ -6,7 +6,10 @@ export const compraStore = defineStore('store', {
     butacas: [],
     email: null,
     usuariosConectados: [],
-    usuarioActual: null,
+    usuarioActual: {
+      email: null,
+      name: null,
+    },
     tokenUsuario: null
   }),
   actions: {

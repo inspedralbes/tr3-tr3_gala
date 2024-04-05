@@ -52,6 +52,7 @@ export default {
           if (data.token) {
             compraStore().email = this.email;
             compraStore().movieTitle = "Moana";
+            compraStore().usuarioActual.email = this.email;
 
             this.fetchUserDetails(this.email, data.token);
             alert('Has iniciat sessió correctament!');
@@ -76,7 +77,8 @@ export default {
             const store = compraStore();
             store.agregarUsuarioConectado(data);
             store.tokenUsuario = token;
-            this.socket.emit("user connected", { id: this.socket.id, name: data });
+            store.usuarioActual.name = data.name;
+            this.socket.emit("user connected", { id: this.socket.id, name: data.name });
           }
         })
     }
