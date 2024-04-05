@@ -1,62 +1,117 @@
 <template>
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 p-4" v-if="userData">
-      <div class="md:flex">
-        <div class="p-8">
-          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Perfil de Usuario</div>
-          <h2 class="block mt-1 text-lg leading-tight font-medium text-black">Tus Datos:</h2>
-          <ul class="mt-2 text-gray-500">
-            <li class="py-1">
-              <span class="font-bold">Nombre:</span> {{ userData.name }}
-              <button @click="editName">Editar</button>
-            </li>
-            <li class="py-1">
-              <span class="font-bold">Email:</span> {{ userData.email }}
-              <button @click="editEmail">Editar</button>
-            </li>
-          </ul>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 p-4">
+        <div class="md:flex">
+            <div class="p-8">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Perfil de Usuario</div>
+                <h2 class="block mt-1 text-lg leading-tight font-medium text-black">Tus Datos:</h2>
+                <ul class="mt-2 text-gray-500">
+                    <li class="py-1">
+                        <span class="font-bold">Nombre:</span> {{ userData.name }}
+                        <button @click="editField('name')">Editar</button>
+                    </li>
+                    <li class="py-1">
+                        <span class="font-bold">Email:</span> {{ userData.email }}
+                        <button @click="editField('email')">Editar</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+        <!-- Modal-->
+        <div v-if="editing" class="modal" @click="editing = false">
+        <div class="modal-content" @click.stop>
+            <label class="modal-label" :for="editing">{{ editing }}</label>
+            <input class="modal-input" :id="editing" v-model="newField" type="text">
+            <button class="modal-button" @click="saveChanges">Guardar Cambios</button>
+        </div>
     </div>
-  </template>
-  
-  <script>
-  import { compraStore } from "../stores/compra.js";
-  export default {
+    </div>
+</template>
+
+<script>
+import { compraStore } from "../stores/compra.js";
+export default {
     data() {
-      return {
-        userData: null,
-        store: compraStore()
-      }
+        return {
+            userData: {},
+            editing: null,
+            newField: null,
+            store: compraStore()
+        }
     },
-    created() {
-      this.getUserInfo();
-    },
+    // ...
     methods: {
-      getUserInfo() {
-        fetch(`http://localhost:8000/api/user?email=${this.store.email}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.store.token}`
-          },
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data) {
-            this.userData = data;
-            console.log(this.userData);
-            console.log(this.userData.name);
-          }
-        })
-      },
-      editName() {
-        // Aquí puedes abrir un modal para editar el nombre
-        // y luego llamar a la API para actualizar el nombre en la base de datos
-      },
-      editEmail() {
-        // Aquí puedes abrir un modal para editar el correo electrónico
-        // y luego llamar a la API para actualizar el correo electrónico en la base de datos
-      }
+        // ...
+        editField(field) {
+            console.log('editField called with', field);
+            this.newField = this.userData[field];
+            this.editing = field;
+        },
+        saveChanges() {
+            console.log('saveChanges called');
+            // llamar a la API para actualizar el campo en la base de datos
+            this.userData[this.editing] = this.newField;
+            this.editing = null;
+        }
     }
-  }
-  </script>
+};
+</script>
+<style scoped>
+.modal {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.modal-content {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 4px;
+    width: 300px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.modal-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.modal-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: #2980b9;
+}
+</style>

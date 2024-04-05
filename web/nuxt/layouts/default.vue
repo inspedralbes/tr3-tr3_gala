@@ -10,7 +10,7 @@
             class="text-sm font-bold leading-6 text-white lg:hidden">
             Log out <span aria-hidden="true">&rarr;</span>
           </a>
-          <a v-else href="/Login" class="text-sm font-bold leading-6 text-white lg:hidden">
+          <a v-else href="/" class="text-sm font-bold leading-6 text-white lg:hidden">
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
         </nuxt-link>
@@ -41,7 +41,7 @@
         <a v-if="compraStore().email" href="#" @click="tancarSessio" class="text-sm font-bold leading-6 text-white lg:hidden">
           Log out <span aria-hidden="true">&rarr;</span>
         </a>
-        <a v-else href="/Login" class="text-sm font-bold leading-6 text-white">
+        <a v-else href="/" class="text-sm font-bold leading-6 text-white">
           Log in <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -101,6 +101,7 @@ export default {
       store.email = null
       store.tokenUsuario = null
       store.usuariosConectados = []
+      store.usuarioActual= {}
     }
 
     return {
