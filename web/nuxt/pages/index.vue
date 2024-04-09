@@ -37,6 +37,8 @@ export default {
   },
   methods: {
     formPost() {
+      let store = compraStore();
+      
       fetch(`http://localhost:8000/api/login`, {
         method: 'POST',
         headers: {

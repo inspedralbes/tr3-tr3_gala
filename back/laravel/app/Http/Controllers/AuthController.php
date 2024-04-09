@@ -95,26 +95,25 @@ class AuthController extends Controller
         }
     }
     public function updateUser(Request $request)
-    {
-        $email = $request->input('email');
-        $user = User::where('email', $email)->first();
+{
+    $email = $request->input('email');
+    $user = User::where('email', $email)->first();
 
-        if ($user) {
-            $name = $request->input('name');
-            if ($name !== null) {
-                $user->name = $name;
-            }
-
-            $newEmail = $request->input('newEmail');
-            if ($newEmail !== null) {
-                $user->email = $newEmail;
-            }
-
-            $user->save();
-
-            return response()->json(['message' => 'User updated successfully']);
-        } else {
-            return response()->json(['error' => 'User not found'], 404);
+    if ($user) {
+        $name = $request->input('name');
+        if ($name !== null) {
+            $user->name = $name;
         }
+
+        $newPassword = $request->input('newPassword');
+        if ($newPassword !== null) {
+            $user->password = bcrypt($newPassword);
+        }
+
+        $user->save();
+        return response()->json(['user' => $user, 'oldEmail' => $email]);
+    } else {
+        return response()->json(['error' => 'User not found'], 404);
     }
+}
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="admin-area">
       <h1>Zona Admin</h1>
-      <button class="admin-button" @click="editProfile">Editar mi perfil</button>
+
       <button class="admin-button" @click="editUserList">Editar lista de usuarios</button>
       <button class="admin-button" @click="editBillboard">Modificar cartelera</button>
       <button class="admin-button" @click="editSessions">Modificar sesiones</button>
@@ -12,9 +12,6 @@
   export default {
     middleware: 'check-admin',
     methods: {
-      editProfile() {
-        // ...
-      },
       editUserList() {
         // ...
       },

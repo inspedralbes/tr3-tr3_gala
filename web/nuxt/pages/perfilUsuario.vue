@@ -8,10 +8,10 @@
                     <li class="py-1">
                         <span class="font-bold">Nombre:</span> {{ userData.name }}
                         <button @click="editField('name')">Editar</button>
-                    </li>
+                    </li>              
                     <li class="py-1">
-                        <span class="font-bold">Email:</span> {{ userData.email }}
-                        <button @click="editField('email')">Editar</button>
+                        <span class="font-bold">Contraseña:</span> ****
+                        <button @click="editField('password')">Editar</button>
                     </li>
                 </ul>
             </div>
@@ -20,7 +20,7 @@
         <div v-if="editing" class="modal" @click="editing = false">
             <div class="modal-content" @click.stop>
                 <label class="modal-label" :for="editing">{{ editing }}</label>
-                <input class="modal-input" :id="editing" v-model="newField" type="text">
+                <input class="modal-input" :id="editing" v-model="newField" :type="editing === 'password' ? 'password' : 'text'">
                 <button class="modal-button" @click="saveChanges">Guardar Cambios</button>
             </div>
         </div>
@@ -28,18 +28,20 @@
 </template>
 <script>
 import { compraStore } from "../stores/compra.js";
+
 export default {
     data() {
         return {
-            userData: {},
+            userData: {
+                email: '',
+                name: '',
+                // add other properties as needed
+            },
+            newField: '',
             editing: null,
-            newField: null,
-            store: compraStore()
-        }
+        };
     },
-    // ...
     methods: {
-        // ...
         editField(field) {
             console.log('editField called with', field);
             this.newField = this.userData[field];
@@ -48,13 +50,22 @@ export default {
         async saveChanges() {
             console.log('saveChanges called');
 
+            const store = compraStore();
+            console.log("ey", store.usuarioActual.email);
+
+            if (!store.usuarioActual) {
+                console.error('usuarioActual is not defined in the store');
+                return;
+            }
+
             const updatedUserData = {
-                email: this.userData.email,
+                email: store.usuarioActual.email,
                 [this.editing]: this.newField
             };
 
-            this.userData[this.editing] = this.newField;
-            this.editing = null;
+            if (this.editing === 'password') {
+                updatedUserData.newPassword = this.newField;
+            }
 
             const response = await fetch('http://localhost:8000/api/updateUser', {
                 method: 'PUT',
@@ -66,7 +77,20 @@ export default {
 
             if (!response.ok) {
                 console.error('Error updating user:', response.statusText);
+                return;
             }
+
+            const data = await response.json();
+
+            if (!data.user) {
+                console.error('User is not defined in the response');
+                return;
+            }
+
+            this.userData.email = data.user.email;
+            this.userData[this.editing] = this.newField;
+
+            this.editing = null;
         }
     }
 };
