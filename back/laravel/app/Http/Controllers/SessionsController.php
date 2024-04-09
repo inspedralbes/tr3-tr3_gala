@@ -54,6 +54,31 @@ class SessionsController extends Controller
 
         return response()->json($seatIds);
     }
+    public function deleteSession($id)
+{
+    $session = Sessions::find($id);
+
+    if (!$session) {
+        return response()->json(['error' => 'Session not found'], 404);
+    }
+
+    $session->delete();
+
+    return response()->json(['message' => 'Session deleted successfully']);
+}
+
+public function addSession(Request $request)
+{
+    $this->validate($request, [
+        'pelicula_id' => 'required|exists:pelicules,id',
+        'fecha' => 'required|date',
+        'hora' => 'required|date_format:H:i',
+    ]);
+
+    $session = Sessions::create($request->all());
+
+    return response()->json(['message' => 'Session added successfully', 'session' => $session]);
+}
     
 
 }

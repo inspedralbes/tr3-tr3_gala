@@ -1,0 +1,61 @@
+<template>
+  <div>
+    <h1>Añadir sesión</h1>
+    <form @submit.prevent="addSession">
+      <label for="pelicula_id">ID de la película:</label>
+      <input id="pelicula_id" type="number" v-model="newSession.pelicula_id" required>
+
+      <label for="fecha">Fecha:</label>
+      <input id="fecha" type="date" v-model="newSession.fecha" required>
+
+      <label for="hora">Hora:</label>
+      <input id="hora" type="time" v-model="newSession.hora" required>
+
+      <button type="submit">Añadir sesión</button>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      ruta: 'http://localhost:8000',
+      newSession: {
+        pelicula_id: '',
+        fecha: '',
+        hora: ''
+      }
+    };
+  },
+  methods: {
+    async addSession() {
+      const response = await fetch(`${this.ruta}/api/sessions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.newSession)
+      });
+
+      if (!response.ok) {
+        console.error('Error al añadir la sesión:', response.statusText);
+        return;
+      }
+
+      // Limpiar el formulario
+      this.newSession = {
+        pelicula_id: '',
+        fecha: '',
+        hora: ''
+      };
+
+      alert('Sesión añadida con éxito');
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* Puedes añadir aquí los estilos que desees */
+</style>

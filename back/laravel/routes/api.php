@@ -44,3 +44,4 @@ Route::put('/updateUser', [AuthController::class, 'updateUser']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::put('/updateUserList', [AuthController::class, 'updateUserList']);
 Route::delete('/deleteUser/{email}', [AuthController::class, 'deleteUser']);
+Route::post('/pelicules', [PeliculesController::class, 'store']);
