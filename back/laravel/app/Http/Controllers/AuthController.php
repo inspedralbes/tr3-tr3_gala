@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -95,25 +96,80 @@ class AuthController extends Controller
         }
     }
     public function updateUser(Request $request)
-{
-    $email = $request->input('email');
-    $user = User::where('email', $email)->first();
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
 
-    if ($user) {
-        $name = $request->input('name');
-        if ($name !== null) {
-            $user->name = $name;
+        if ($user) {
+            $name = $request->input('name');
+            if ($name !== null) {
+                $user->name = $name;
+            }
+
+            $newPassword = $request->input('newPassword');
+            if ($newPassword !== null) {
+                $user->password = bcrypt($newPassword);
+            }
+
+            $user->save();
+            return response()->json(['user' => $user, 'oldEmail' => $email]);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
         }
-
-        $newPassword = $request->input('newPassword');
-        if ($newPassword !== null) {
-            $user->password = bcrypt($newPassword);
-        }
-
-        $user->save();
-        return response()->json(['user' => $user, 'oldEmail' => $email]);
-    } else {
-        return response()->json(['error' => 'User not found'], 404);
     }
-}
+    public function updateUserList(Request $request)
+    {
+        $newUserList = $request->input('userList');
+
+        if (!$newUserList) {
+            return response()->json(['error' => 'User list not provided'], 400);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($newUserList as $userData) {
+                try {
+                    $user = User::where('email', $userData['email'])->first();
+
+                    if (!$user) {
+                        $user = new User;
+                        $user->email = $userData['email'];
+                    }
+
+                    $user->name = $userData['name'];
+                    // update other properties as needed
+
+                    $user->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    return response()->json(['error' => 'Error updating user: ' . $userData['email'] . ', error: ' . $e->getMessage()], 500);
+                }
+            }
+
+            DB::commit();
+            return response()->json(['message' => 'User list updated successfully']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => 'Error updating user list: ' . $e->getMessage()], 500);
+        }
+    }
+    public function getUsers()
+    {
+        $users = User::all();
+        return response()->json(['users' => $users]);
+    }
+    public function deleteUser($email)
+    {
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->compras()->delete();  // Delete associated purchases
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully']);
+    }
 }

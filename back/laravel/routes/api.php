@@ -41,3 +41,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/user', [AuthController::class, 'getUser']);
 Route::get('/user', [AuthController::class, 'getUser']);
 Route::put('/updateUser', [AuthController::class, 'updateUser']);
+Route::get('/getUsers', [AuthController::class, 'getUsers']);
+Route::put('/updateUserList', [AuthController::class, 'updateUserList']);
+Route::delete('/deleteUser/{email}', [AuthController::class, 'deleteUser']);

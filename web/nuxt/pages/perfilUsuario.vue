@@ -35,7 +35,7 @@ export default {
             userData: {
                 email: '',
                 name: '',
-                // add other properties as needed
+               
             },
             newField: '',
             editing: null,
