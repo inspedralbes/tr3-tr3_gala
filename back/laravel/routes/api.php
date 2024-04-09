@@ -29,10 +29,14 @@ Route::get('/actualizarButacas', [CompraController::class, 'actualizarButacas'])
 /**RUTES DE SESSIONS */
 Route::get('/sessions', [SessionsController::class, 'mostrarSesion']);
 Route::get('/sessions/{sessionId}/purchasedSeats', [SessionsController::class, 'getPurchasedSeats']);
+Route::post('/sessionsAdd', [SessionsController::class, 'addSession']);
+Route::delete('/sessions/{id}', [SessionsController::class, 'deleteSession']);
 
 
 /** RUTES DE PELÍCULES */
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
+Route::post('/pelicules', [PeliculesController::class, 'store']);
+Route::delete('/pelicules/{id}', [PeliculesController::class, 'destroy']);
 
 /**RUTES DE AUTENTICACIO */
 Route::post('/registre', [AuthController::class, 'register']);
@@ -44,4 +48,3 @@ Route::put('/updateUser', [AuthController::class, 'updateUser']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::put('/updateUserList', [AuthController::class, 'updateUserList']);
 Route::delete('/deleteUser/{email}', [AuthController::class, 'deleteUser']);
-Route::post('/pelicules', [PeliculesController::class, 'store']);

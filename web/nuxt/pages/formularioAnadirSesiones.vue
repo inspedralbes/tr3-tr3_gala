@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     async addSession() {
-      const response = await fetch(`${this.ruta}/api/sessions`, {
+      const response = await fetch(`${this.ruta}/api/sessionsAdd`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,5 +57,52 @@ export default {
 </script>
 
 <style scoped>
-/* Puedes añadir aquí los estilos que desees */
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
 </style>
