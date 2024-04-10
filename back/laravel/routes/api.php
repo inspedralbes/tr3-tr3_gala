@@ -48,3 +48,4 @@ Route::put('/updateUser', [AuthController::class, 'updateUser']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::put('/updateUserList', [AuthController::class, 'updateUserList']);
 Route::delete('/deleteUser/{email}', [AuthController::class, 'deleteUser']);
+Route::get('/user/role/{email}', [AuthController::class, 'getRoleByEmail']);

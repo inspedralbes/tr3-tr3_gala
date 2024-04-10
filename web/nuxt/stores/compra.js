@@ -9,6 +9,7 @@ export const compraStore = defineStore('store', {
     usuarioActual: {
       email: null,
       name: null,
+      role: null
     },
     tokenUsuario: null
   }),
@@ -17,6 +18,9 @@ export const compraStore = defineStore('store', {
       if (!this.usuariosConectados.includes(nombre)) {
         this.usuariosConectados.push(nombre);
       }
+    },
+    setUsuarioActualRole(role) {
+      this.usuarioActual.role = role;
     },
   },
 });

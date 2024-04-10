@@ -21,7 +21,7 @@
 </template>
 <script>
 import { io } from "socket.io-client";
-import { compraStore} from "../stores/compra.js";
+import { compraStore } from "../stores/compra.js";
 
 export default {
   data() {
@@ -33,12 +33,13 @@ export default {
   },
   mounted() {
     this.socket = io("http://localhost:4520");
+    
 
   },
   methods: {
     formPost() {
       let store = compraStore();
-      
+
       fetch(`http://localhost:8000/api/login`, {
         method: 'POST',
         headers: {
@@ -55,11 +56,10 @@ export default {
             compraStore().email = this.email;
             compraStore().movieTitle = "Moana";
             compraStore().usuarioActual.email = this.email;
-
             this.fetchUserDetails(this.email, data.token);
             alert('Has iniciat sessió correctament!');
             this.$router.push('/index2');
-          
+
           } else if (data.error) {
             alert('Error al iniciar sessió: ' + data.error);
           }
@@ -71,6 +71,15 @@ export default {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
+        },
+        async fetchUserRole(email) {
+          const response = await fetch(`http://localhost:8000/api/user/role/${email}`);
+          if (response.ok) {
+            const data = await response.json();
+            this.compraStore.setUsuarioActualRole(data.role);
+          } else {
+            console.error('Error fetching user role');
+          }
         },
       })
         .then(response => response.json())

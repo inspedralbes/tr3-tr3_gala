@@ -172,4 +172,12 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
+    public function getRoleByEmail($email) {
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            return response()->json(['role' => $user->role]);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    }
 }

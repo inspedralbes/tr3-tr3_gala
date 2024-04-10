@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-
+import { compraStore } from "../stores/compra.js";
 export default {
   middleware: 'check-admin',
   data() {
@@ -149,7 +149,7 @@ export default {
       });
 
       if (!response.ok) {
-        console.error('Error getting user list:', response.statusText);
+       
         return;
       }
 
@@ -171,7 +171,7 @@ export default {
       });
 
       if (!updateResponse.ok) {
-        console.error('Error updating user list:', updateResponse.statusText);
+      
         return;
       }
 
@@ -194,6 +194,13 @@ export default {
         console.error('La respuesta de la API no tiene el formato esperado');
       }
     },
+    mounted() {
+    const store = compraStore();
+   
+    if (store.usuariosConectados[0].role !== 'admin') {
+      this.$router.push('/index2')
+    }
+  },
   }
 }
 </script>

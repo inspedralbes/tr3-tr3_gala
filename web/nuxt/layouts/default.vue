@@ -31,10 +31,11 @@
               class="font-bold text-white">Cartelera</nuxt-link></li>
           <li><nuxt-link :class="{ 'pointer-events-none opacity-50': !compraStore().email }" to="/sesiones"
               class="font-bold text-white">Sesión del Día</nuxt-link></li>
-          <li v-if="compraStore().email != null"><nuxt-link to="/zonaUsuari" class="font-bold text-white">Zona
+          <li v-if="compraStore().email != null"><nuxt-link to="/zonaUsuari" :class="{ 'pointer-events-none opacity-0': compraStore().usuarioActual.role=='admin' }" class="font-bold text-white">Zona
               Usuari</nuxt-link></li>
-              <li v-if="compraStore().usuarioActual.role != 'user'"><nuxt-link to="/zonaAdmin" class="font-bold text-white">Zona
+              <li v-if="compraStore().usuarioActual.role != 'user'"><nuxt-link :class="{ 'pointer-events-none opacity-0': !compraStore().email }" to="/zonaAdmin" class="font-bold text-white" >Zona
               Admin</nuxt-link></li>
+              
         </ul>
       </nav>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
