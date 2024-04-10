@@ -49,3 +49,6 @@ Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::put('/updateUserList', [AuthController::class, 'updateUserList']);
 Route::delete('/deleteUser/{email}', [AuthController::class, 'deleteUser']);
 Route::get('/user/role/{email}', [AuthController::class, 'getRoleByEmail']);
+Route::post('/addUser', [AuthController::class, 'addUser']);
+Route::put('/makeAdmin/{email}', [AuthController::class, 'makeAdmin']);
+Route::put('/makeUser/{email}', [AuthController::class, 'makeUser']);

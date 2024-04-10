@@ -81,19 +81,31 @@ class AuthController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
     }
-    public function makeAdmin(Request $request)
+    public function makeAdmin($email)
     {
-        $email = $request->input('email');
         $user = User::where('email', $email)->first();
 
-        if ($user) {
-            $user->role = 'admin';
-            $user->save();
-
-            return response()->json(['message' => 'User role updated to admin']);
-        } else {
-            return response()->json(['error' => 'User not found'], 404);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
         }
+
+        $user->role = 'admin';
+        $user->save();
+
+        return response()->json(['message' => 'User made admin successfully'], 200);
+    }
+    public function makeUser($email)
+    {
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $user->role = 'user';
+        $user->save();
+
+        return response()->json(['message' => 'User made admin successfully'], 200);
     }
     public function updateUser(Request $request)
     {
@@ -172,12 +184,31 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
-    public function getRoleByEmail($email) {
+    public function getRoleByEmail($email)
+    {
         $user = User::where('email', $email)->first();
         if ($user) {
             return response()->json(['role' => $user->role]);
         } else {
             return response()->json(['error' => 'User not found'], 404);
         }
+    }
+
+
+    public function addUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['message' => 'User created successfully'], 201);
     }
 }

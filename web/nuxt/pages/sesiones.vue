@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+
+   
+   <div class="content">
+     <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
+     <h1 class="title">CINEMA GALA</h1>
+     <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia.</p>
+     </div>
   <div class="sesiones-list">
     <div class="session-container">
       <div
@@ -78,6 +85,9 @@ export default {
   width: 100%;
   max-width: 800px;
   font-family: Arial, sans-serif;
+  background-color: #ffd3f8;
+  padding: 5%;
+  border-radius: 10%;
 }
 
 .session-container {
@@ -102,6 +112,27 @@ export default {
   transform: scale(1.05);
 }
 
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #444;
+}
 .session-image img {
   width: 100%;
   height: auto;
@@ -109,7 +140,7 @@ export default {
 }
 
 .session-title {
-  position: absolute;
+
   bottom: 0;
   left: 0;
   right: 0;

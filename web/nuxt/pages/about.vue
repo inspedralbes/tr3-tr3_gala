@@ -1,24 +1,5 @@
 <template>
-  <div class="container">
-   
-    <div class="content">
-      <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
-      <h1 class="title">CINEMA GALA</h1>
-      <div class="links">
-        <router-link to="/peliculas" class="link pink">Cartelera</router-link>
-        <router-link to="/sesiones" class="link violet">Sessio del Dia</router-link>
-        <div v-if="!compraStore().email">
-          <router-link to="/index2" class="link blue">Login</router-link>
-        </div>
-        <div v-else>
-          <!--<router-link to="/index2" class="link blue">Logout</router-link>-->
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="text-content">
+     <div class="text-content">
       <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la
         nostra
         cartellera per descobrir noves pel·lícules, o inicieu sessió per gaudir d'una experiència personalitzada. A
@@ -42,22 +23,28 @@
         </li>
       </ul>
     </div>
-
-    <div class="footer">
-      <p>&copy; 2024 Cinema Gala. All rights reserved.</p>
-      <div class="links">
-        <router-link to="/terms" class="link">Terms of Service</router-link>
-        <router-link to="/privacy" class="link">Privacy Policy</router-link>
-      </div>
-    </div>
-  </div>
 </template>
-
 <script>
 import { compraStore } from "../stores/compra.js";
-export default {
 
-}
+export default {
+  methods: {
+    async fetchUserRole(email) {
+      const store = compraStore();
+      const response = await fetch(`http://localhost:8000/api/user/role/${email}`);
+      if (response.ok) {
+        const data = await response.json();
+        store.setUsuarioActualRole(data.role);
+      } else {
+        console.error('Error fetching user role');
+      }
+    },
+  },
+  mounted() {
+    const store = compraStore();
+    this.fetchUserRole(store.usuarioActual.email);
+  }
+};
 </script>
 
 <style scoped>

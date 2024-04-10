@@ -5,28 +5,28 @@
         "hora": "17:00:00"
     },
     {
-        "pelicula_id": 5,
+        "pelicula_id": 1,
         "fecha": "2024-03-25",
         "hora": "19:30:00"
     },
     {
-        "pelicula_id": 5,
+        "pelicula_id": 2,
         "fecha": "2024-03-25",
         "hora": "21:00:00"
     },
     {
-        "pelicula_id": 5,
-        "fecha": "2024-03-26",
+        "pelicula_id": 3,
+        "fecha": "2024-03-25",
         "hora": "17:00:00"
     },
     {
-        "pelicula_id": 5,
-        "fecha": "2024-03-26",
+        "pelicula_id": 4,
+        "fecha": "2024-03-25",
         "hora": "19:30:00"
     },
     {
-        "pelicula_id": 5,
-        "fecha": "2024-03-26",
+        "pelicula_id": 6,
+        "fecha": "2024-03-25",
         "hora": "23:00:00"
 
     }

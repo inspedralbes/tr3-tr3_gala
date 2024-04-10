@@ -7,7 +7,10 @@
       <li v-for="user in userList" :key="user.email">
         {{ user.name }} ({{ user.email }})
         <button @click="deleteUser(user)">Eliminar</button>
+        <button @click="makeAdmin(user)">Hacer admin</button>
+        <button @click="makeUser(user)">Hacer usuario</button>
       </li>
+      <button class="admin-button" @click="goToAddUserPage">Añadir</button>
     </ul>
 
     <button class="admin-button" @click="toggleBillboard">Modificar cartelera</button>
@@ -72,6 +75,41 @@ export default {
     },
     goToAddSessionPage() {
       this.$router.push('/formularioAnadirSesiones');
+    },
+    goToAddUserPage() {
+      this.$router.push('/formularioAnadirUsuario');
+    },
+    async makeAdmin(user) {
+      const response = await fetch(`http://localhost:8000/api/makeAdmin/${user.email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        console.error('Error making user admin:', response.statusText);
+        return;
+      }
+
+      console.log('User made admin successfully');
+      this.editUserList();  // Refresh the user list
+    },
+    async makeUser(user) {
+      const response = await fetch(`http://localhost:8000/api/makeUser/${user.email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        console.error('Error making user admin:', response.statusText);
+        return;
+      }
+
+      console.log('User made USER successfully');
+      this.editUserList();  // Refresh the user list
     },
     async deleteUser(user) {
       const response = await fetch(`http://localhost:8000/api/deleteUser/${user.email}`, {
@@ -149,7 +187,7 @@ export default {
       });
 
       if (!response.ok) {
-       
+
         return;
       }
 
@@ -171,7 +209,7 @@ export default {
       });
 
       if (!updateResponse.ok) {
-      
+
         return;
       }
 
@@ -195,12 +233,12 @@ export default {
       }
     },
     mounted() {
-    const store = compraStore();
-   
-    if (store.usuariosConectados[0].role !== 'admin') {
-      this.$router.push('/index2')
-    }
-  },
+      const store = compraStore();
+
+      if (store.usuariosConectados[0].role !== 'admin') {
+        this.$router.push('/index2')
+      }
+    },
   }
 }
 </script>
