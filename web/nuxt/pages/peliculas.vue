@@ -180,6 +180,8 @@ export default {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  width: 80%;
+  height:28%;
 }
 
 .buttonModal {

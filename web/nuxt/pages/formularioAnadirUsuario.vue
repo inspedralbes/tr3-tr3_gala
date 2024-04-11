@@ -2,44 +2,56 @@
   <form @submit.prevent="addUser" class="add-user-form">
     <input v-model="newUser.name" placeholder="Nombre" required class="form-input" />
     <input v-model="newUser.email" placeholder="Email" required class="form-input" />
-    <input v-model="newUser.password" placeholder="Contraseña" required class="form-input" />
+    <input v-model="newUser.password" type="password" placeholder="Contraseña" required class="form-input" />
     <button type="submit" class="submit-button">Añadir usuario</button>
   </form>
 </template>
 
-  <script>
-  export default {
-    data() {
-      return {
-        newUser: {
-          name: '',
-          email: '',
-          password: '',
-        },
-      };
-    },
-    methods: {
-      async addUser() {
-        const response = await fetch('http://localhost:8000/api/addUser', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.newUser),
-        });
-  
-        if (!response.ok) {
-          console.error('Error adding user:', response.statusText);
-          return;
-        }
-  
-        console.log('User added successfully');
-        this.newUser = { name: '', email: '', password: '' }; 
-        this.$router.push('/zonaAdmin'); 
+<script>
+export default {
+  data() {
+    return {
+      newUser: {
+        name: '',
+        email: '',
+        password: '',
       },
-    },
-  };
-  </script>
+    };
+  },
+  methods: {
+    addUser() {
+    let userData = {
+      name: this.name,
+      email: this.email,
+      password: this.password
+    };
+
+    console.log("User data:", userData);
+
+    fetch('http://localhost:8000/api/addUser', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Server response:", data);
+      if (data.success) {
+        this.name = '';
+        this.email = '';
+        this.password = '';
+        this.$router.push('/zonaAdmin');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+  },
+};
+</script>
   <style scoped>
   .add-user-form {
     display: flex;

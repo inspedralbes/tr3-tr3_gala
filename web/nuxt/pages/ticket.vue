@@ -5,7 +5,7 @@
     <table class="ticket-details">
       <tr>
         <td>Fecha:</td>
-        <td>{{ formatDate }}</td>
+        <td>25-03-2024</td>
       </tr>
       <tr>
         <td>Película:</td>
@@ -60,9 +60,6 @@ export default {
     formatDate() {
       const date = new Date();
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-    },
-    sessionDate() {
-      return this.sessioPinia ? this.sessioPinia.fecha : "Fecha no seleccionada";
     },
     sessionTime() {
       return this.sessioPinia ? this.sessioPinia.hora : "Hora no seleccionada";
