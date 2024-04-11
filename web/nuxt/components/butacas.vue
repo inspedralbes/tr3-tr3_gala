@@ -1,12 +1,10 @@
 <template>
-  <div class="container">
-    <div class="cinema-seats">
-      <component v-for="seat in availableSeats" :key="seat.id" :is="getSeatComponent(seat)"
-        @click="toggleSeatStatus(seat)" :id="'seat_' + seat.id" class="svg-seat" />
-    </div>
-    <div class="screen">
-      <h1 class="screen-title">Pantalla</h1>
-    </div>
+  <div class="cinema-seats">
+    <component v-for="seat in availableSeats" :key="seat.id" :is="getSeatComponent(seat)"
+      @click="toggleSeatStatus(seat)" :id="'seat_' + seat.id" class="svg-seat" />
+  </div>
+  <div class="screen">
+    <h1 class="screen-title">Pantalla</h1>
   </div>
 </template>
 
@@ -31,7 +29,7 @@ export default {
   },
   data() {
     return {
-      availableSeats: Array.from({ length: 84 }, (_, index) => ({
+      availableSeats: Array.from({ length: 120 }, (_, index) => ({
         id: index + 1,
         status: 'available',
         precio: 6.50,
@@ -52,7 +50,10 @@ export default {
       }
     },
     getSeatComponent(seat) {
-      if (Math.floor((seat.id - 1) / 14) === 2) {
+      const fila = Math.floor((seat.id - 1) / 10);
+
+      // Si es la fila 6, es VIP
+      if (fila === 5) {
         seat.precio = 9.50;
         seat.isVip = true;
       }
@@ -67,6 +68,8 @@ export default {
           return 'ButacaLliure';
       }
     }
+
+
   },
   created() {
     if (typeof this.sessionId !== 'undefined') {
@@ -90,31 +93,19 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 .cinema-seats {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 10px;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .cinema-seats .svg-seat {
-  width: 40px;
+  width: calc(10% - 20px);
+  /* Ajusta el tamaño de las butacas para 10 columnas */
   height: auto;
   cursor: pointer;
+  margin: 10px;
   transition: transform 0.3s ease-in-out;
 }
 

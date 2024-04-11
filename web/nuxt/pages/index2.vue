@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-   
     <div class="content">
       <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
       <h1 class="title">CINEMA GALA</h1>
@@ -13,10 +12,8 @@
         <div v-else>
           <!--<router-link to="/index2" class="link blue">Logout</router-link>-->
         </div>
-
       </div>
     </div>
-
 
     <div class="text-content">
       <p>Benvingut a Cine Gala, el teu destí final per a les darreres pel·lícules i sessions del dia. Navega per la
@@ -27,13 +24,25 @@
         de la funció!</p>
     </div>
 
-
-    <div class="about-us">
-      <h2>Sobre Nosaltres</h2>
-      <p>Som un equip d'apassionats del cinema dedicat a portar-te les millors pel·lícules i sessions del dia. Creiem a
-        la màgia del cinema i volem compartir-la amb tu.</p>
+    <div class="sesiones-list">
+      <div class="session-container">
+        <div class="session-item" v-for="session in sessions" :key="session.sesion.id"
+          @click="goToSession(session.sesion)">
+          <div class="session-image">
+            <img :src="session.pelicula.imagen" :alt="session.pelicula.titulo" />
+            <div class="session-title">
+              <h2>{{ session.pelicula.titulo }}</h2>
+            </div>
+          </div>
+          <div class="session-details">
+            <p>{{ session.pelicula.descripcion }}</p>
+            <p>
+              {{ session.sesion.fecha }} - {{ session.sesion.hora }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
     <div class="connected-users">
       <h2>Usuarios Conectados</h2>
       <ul>
@@ -56,15 +65,100 @@
 <script>
 import { compraStore } from "../stores/compra.js";
 export default {
-
-}
+  data() {
+    return {
+      pelicula: null,
+      sessions: [],
+      ruta: 'http://localhost:8000',
+    };
+  },
+  mounted() {
+    fetch(`http://localhost:8000/api/sessions`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos de la API");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        this.sessions = data.sessions;
+      })
+      .catch((error) => {
+        console.error("Error al obtener datos de la API:", error);
+      });
+  },
+  methods: {
+  goToSession(session) {
+    let storeSesion = compraStore();
+    storeSesion.sessio = session;
+    storeSesion.pelicula = session.pelicula_id;
+    this.$router.push(`/compra`);
+  },
+  },
+};
 </script>
-
 <style scoped>
 body {
   margin: 0;
 }
+.sesiones-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 2em;
+}
 
+.session-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+ 
+}
+
+.session-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% / 3 - 2em); 
+  margin: 1em;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.session-item:hover {
+  transform: scale(1.05);
+}
+
+.session-image {
+  position: relative;
+  width: 100%;
+ 
+}
+
+.session-image img {
+  width: 100%;
+  height: auto;
+}
+
+.session-title {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  padding: 0.5em 0;
+  color: white;
+  text-align: center;
+}
+
+.session-details {
+  background-color: #f4f4f4;
+  padding: 1em;
+  width: 100%;
+  text-align: center;
+  border-radius: 10%;
+}
 .container {
   margin: 0 auto;
   padding: 2rem;
@@ -213,4 +307,5 @@ body {
     flex-direction: row;
   }
 }
+
 </style>

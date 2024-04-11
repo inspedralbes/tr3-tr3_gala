@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelicules;
+use App\Models\PeliculesProximamente;
 use Illuminate\Http\Request;
 
-class PeliculesController extends Controller
+class PeliculesProximamenteController extends Controller
 {
-    public function showPelicules()
+    public function showPeliculasProximamente()
     {
-        $pelicules = Pelicules::all();
-        return response()->json($pelicules);
-    }
-    public function show($id)
-    {
-        $pelicule = Pelicules::find($id);
-
-        if ($pelicule) {
-            return response()->json($pelicule);
-        } else {
-            return response()->json(['message' => 'Película no encontrada'], 404);
-        }
+        $peliculasProximamente = PeliculesProximamente::all();
+        return response()->json($peliculasProximamente);
     }
 
     public function store(Request $request)
@@ -33,7 +23,7 @@ class PeliculesController extends Controller
             'url' => 'required',
         ]);
 
-        $pelicule = new Pelicules([
+        $peliculaProxima = new PeliculesProximamente([
             'titol' => $request->get('titol'),
             'descripcio' => $request->get('descripcio'),
             'director' => $request->get('director'),
@@ -41,17 +31,17 @@ class PeliculesController extends Controller
             'url' => $request->get('url'),
         ]);
 
-        $pelicule->save();
+        $peliculaProxima->save();
 
         return response()->json('Película añadida con éxito');
     }
 
     public function destroy($id)
     {
-        $pelicule = Pelicules::find($id);
+        $peliculaProxima = PeliculesProximamente::find($id);
 
-        if ($pelicule) {
-            $pelicule->delete();
+        if ($peliculaProxima) {
+            $peliculaProxima->delete();
             return response()->json(['message' => 'Película eliminada con éxito'], 200);
         } else {
             return response()->json(['message' => 'Película no encontrada'], 404);

@@ -1,0 +1,59 @@
+[
+    {
+      "id": 8,
+      "titol": "La Sireneta",
+      "descripcio": "Ariel, una jove sirena princesa, anhela esdevenir humana després d'enamorar-se d'un príncep humà. Disposada a fer qualsevol cosa per estar amb ell, fa un acord amb la malvada bruixa del mar, Úrsula, que canviarà la seva vida per sempre.",
+      "director": "Ron Clements, John Musker",
+      "any": 1989,
+      "url": "https://image.tmdb.org/t/p/original/zyfWHwxiVw8EGn9nmSPZjQGcGoI.jpg"
+    },
+    {
+      "id": 9,
+      "titol": "La Bella i la Bèstia",
+      "descripcio": "Bella, una jove intel·ligent i valenta, es troba atrapada al castell d'una bèstia maleïda. Malgrat els seus temors, es fa amiga dels encantadors servents encantats del castell i aprèn a veure més enllà de l'exterior de la bèstia per descobrir el cor amable i l'ànima del príncep que hi resideix dins.",
+      "director": "Gary Trousdale, Kirk Wise",
+      "any": 1991,
+      "url": "https://th.bing.com/th/id/R.497cec250816a53fe0b87bea7eefa78d?rik=6q%2fdQehh%2bF45KQ&riu=http%3a%2f%2fes.web.img2.acsta.net%2fpictures%2f14%2f08%2f11%2f12%2f51%2f144274.jpg&ehk=AM3ATJxSs9p86TVhotvAwy%2bDGdOyj%2fstiZiBReYvs5o%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+      "id": 10,
+      "titol": "Aladí",
+      "descripcio": "Aladí, un jove carrerista d'Agrabah, troba una làmpada màgica que conté un génie que pot concedir-li tres desitjos. Amb l'ajuda del génie, Aladí intenta conquerir el cor de la princesa Jasmine i derrotar al malvat hechicer Jafar.",
+      "director": "Ron Clements, John Musker",
+      "any": 1992,
+      "url": "https://th.bing.com/th/id/OIP.K4xqPwivLj4EV30G0Y1maAHaLH?rs=1&pid=ImgDetMain"
+    },
+    {
+      "id": 11,
+      "titol": "Hèrcules",
+      "descripcio": "Hèrcules, fill dels déus grecs Zeus i Hera, és desterrat a la Terra com un humà sense poders després que el malvat Hades intenti matar-lo quan era un nadó. Per recuperar el seu estatus diví, Hèrcules ha de demostrar la seva valentia i esdevenir un vertader heroi.",
+      "director": "Ron Clements, John Musker",
+      "any": 1997,
+      "url": "https://image.tmdb.org/t/p/w1280/eHHRq5CoEl5N1BdRm5lG2vQb3Hv.jpg"
+    },
+    {
+      "id": 12,
+      "titol": "El Rei Lleó 2: El Regne de Simba",
+      "descripcio": "Simba i Nala tenen una filla anomenada Kiara, que està destinada a governar el regne. No obstant això, quan Kiara s'aventura fora del regne i coneix a Kovu, un lleó exiliat, la seva amistat floreix enmig de la tensió entre les seves famílies.",
+      "director": "Darrell Rooney, Rob LaDuca",
+      "any": 1998,
+      "url": "https://th.bing.com/th/id/R.5de420b33e8f00eaed8ca1ecac4712e4?rik=tYg%2bKdayhwH49g&pid=ImgRaw&r=0"
+    },
+    {
+      "id": 13,
+      "titol": "Hèrcules",
+      "descripcio": "Una intrèpida adolescent anomenada Megara fa un acord amb Hades per salvar la vida del seu amant, però es troba embolicada en els plans malvats del déu de l'inframón. Hèrcules, amb l'ajuda dels seus amics, ha de lluitar contra monstres i dimonis per salvar a Megara i aturar a Hades.",
+      "director": "Ron Clements, John Musker",
+      "any": 1997,
+      "url": "https://image.tmdb.org/t/p/w1280/eHHRq5CoEl5N1BdRm5lG2vQb3Hv.jpg"
+    },
+    {
+      "id": 14,
+      "titol": "El Planeta del Tresor",
+      "descripcio": "Jim Hawkins, un jove aventurer, troba un mapa que el porta a la llegendaria ubicació del Tresor del Capità Flint. Acompanyat pel excèntric doctor Doppler i el cíborg John Silver, Jim es embarca en una perillosa missió que el porta a un planeta alienígena ple de perills i tresors.",
+      "director": "Ron Clements, John Musker",
+      "any": 2002,
+      "url": "https://th.bing.com/th/id/OIP.6jcIJqzxENaDerrxrIvfqQAAAA?rs=1&pid=ImgDetMain"
+    }
+  ]
+  

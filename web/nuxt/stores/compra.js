@@ -11,7 +11,9 @@ export const compraStore = defineStore('store', {
       name: null,
       role: null
     },
-    tokenUsuario: null
+    tokenUsuario: null,
+    pelicula: null,
+    imagen: null,
   }),
   actions: {
     agregarUsuarioConectado(nombre) {

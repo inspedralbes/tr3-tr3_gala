@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">CARTELERA</h1>
+    <h1 class="title">CARTELERA PRÓXIMAMENTE</h1>
     <input type="text" v-model="filter" placeholder="Filtrar por título" class="busca">
     <div class="grid">
       <div v-for="movie in paginatedMovies" :key="movie.id" class="card" @click="selectedMovie = movie">
@@ -18,12 +18,14 @@
     <button @click="nextPage" :disabled="currentPage >= pageCount - 1">Siguiente</button>
     <!-- Modal code -->
     <div v-if="selectedMovie" class="modal" @click="selectedMovie = null">
-      <div class="modal-content" @click.stop>
-        <h2>{{ selectedMovie.titol }}</h2>
-        <p>{{ selectedMovie.descripcio }}</p>
-        <button @click="selectedMovie = null" class="buttonModal">Cerrar</button>
-      </div>
-    </div>
+  <div class="modal-content" @click.stop>
+    <h2>{{ selectedMovie.titol }}</h2>
+    <p>{{ selectedMovie.descripcio }}</p>
+    <p>Director: {{ selectedMovie.director }}</p>
+    <p>Año de estreno: {{ selectedMovie.any }}</p>
+    <button @click="selectedMovie = null" class="buttonModal">Cerrar</button>
+  </div>
+</div>
   </div>
 </template>
 
@@ -69,24 +71,24 @@ export default {
     }
   },
   mounted() {
-    fetch(`${this.ruta}/api/pelicules`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al obtener los datos de la API');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (Array.isArray(data)) {
-          this.movies = data;
-        } else {
-          throw new Error('La respuesta de la API no tiene el formato esperado');
-        }
-      })
-      .catch(error => {
-        console.error('Error al obtener datos de la API:', error);
-      });
-  }
+  fetch(`http://localhost:8000/api/peliculesProximamente`) 
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos de la API');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (Array.isArray(data)) {
+        this.movies = data;
+      } else {
+        throw new Error('La respuesta de la API no tiene el formato esperado');
+      }
+    })
+    .catch(error => {
+      console.error('Error al obtener datos de la API:', error);
+    });
+}
 };
 </script>
 

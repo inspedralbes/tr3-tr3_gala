@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeliculesController;
+use App\Http\Controllers\PeliculesProximamenteController; 
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AuthController;
@@ -37,6 +38,12 @@ Route::delete('/sessions/{id}', [SessionsController::class, 'deleteSession']);
 Route::get('/pelicules', [PeliculesController::class, 'showPelicules']);
 Route::post('/pelicules', [PeliculesController::class, 'store']);
 Route::delete('/pelicules/{id}', [PeliculesController::class, 'destroy']);
+Route::get('/peliculas/{id}',  [PeliculesController::class, 'show']);
+
+/** RUTES DE PELÍCULAS PROXIMAMENTE */
+Route::get('/peliculesProximamente', [PeliculesProximamenteController::class, 'showPeliculasProximamente']);
+Route::post('/peliculesProximamente', [PeliculesProximamenteController::class, 'store']);
+Route::delete('/peliculesProximamente/{id}', [PeliculesProximamenteController::class, 'destroy']);
 
 /**RUTES DE AUTENTICACIO */
 Route::post('/registre', [AuthController::class, 'register']);
