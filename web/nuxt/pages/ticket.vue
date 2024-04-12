@@ -106,32 +106,47 @@ export default {
     },
     async fetchPelicula(id) {
       try {
+        console.log(id, "id")
+        if (id==1) {
+          id=5;
+          console.log(id, "iddsfs")
+        }else{
+          id--;
+        }
         const response = await fetch(`http://localhost:8000/api/peliculas/${id}`);
         if (!response.ok) {
           throw new Error('Error al obtener los datos de la API');
         }
         const pelicula = await response.json();
         this.peliculaPinia = pelicula.titol;
+        console.log(this.peliculaPinia, "peli")
         this.imagenPinia = pelicula.url;
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
       }
     },
   },
-    
+
+  // ...
   mounted() {
     const storeSesion = compraStore();
-    if (storeSesion) {
-      this.fetchPelicula(storeSesion.pelicula);
+    if (storeSesion.sessio && storeSesion.sessio.id) {
+      this.fetchPelicula(storeSesion.sessio.id);
+    } else {
+      console.error('No se puede obtener la película porque la sesión es null o no tiene un ID');
     }
   },
+  // ...
+  // ...
   created() {
     let storeSesion = compraStore();
-    this.selectedSeats = storeSesion.butacas; 
-    this.sessioPinia = storeSesion.sessio; 
-    this.peliculaPinia = storeSesion.pelicula; 
-    this.imagenPinia = storeSesion.imagen; 
+    this.selectedSeats = storeSesion.butacas;
+    this.sessioPinia = storeSesion.sessio;
+    // Elimina estas dos líneas
+    // this.peliculaPinia = storeSesion.pelicula; 
+    // this.imagenPinia = storeSesion.imagen; 
   },
+  // ...
 };
 </script>
 
@@ -141,11 +156,11 @@ export default {
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   background-color: #ffffff;
-  border-radius: 15px; 
+  border-radius: 15px;
   padding: 20px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   margin-top: 10%;
-  margin-bottom: 10%; 
+  margin-bottom: 10%;
 }
 
 .ticket-details {
@@ -157,11 +172,11 @@ export default {
 .ticket-details td {
   padding: 10px;
   border-bottom: 1px solid #f0f0f0;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .ticket-details tr:hover {
-  background-color: #f9f9f9; 
+  background-color: #f9f9f9;
 }
 
 .ticket-details img {
@@ -181,9 +196,9 @@ h1 {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: block; 
+  display: block;
   font-size: 16px;
-  margin: 20px auto 0; 
+  margin: 20px auto 0;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;

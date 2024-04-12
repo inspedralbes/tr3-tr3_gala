@@ -25,7 +25,7 @@
     "url": "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg"
   },
   {
-    "id": 6,
+    "id": 4,
     "titol": "Finding Nemo",
     "descripcio": "Un pez payaso llamado Marlin emprende un viaje épico para encontrar a su hijo Nemo, quien fue capturado por un buceador y llevado a un acuario.",
     "director": "Andrew Stanton",
@@ -33,7 +33,7 @@
     "url": "https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg"
   },
   {
-    "id": 7,
+    "id": 5,
     "titol": "Moana",
     "descripcio": "Una joven llamada Moana se embarca en una aventura para salvar su isla y su gente. En su viaje, se encuentra con el semidiós Maui, quien la ayuda en su búsqueda.",
     "director": "Ron Clements, John Musker",
@@ -41,7 +41,7 @@
     "url": "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg"
   },
   {
-    "id": 8,
+    "id": 6,
     "titol": "Coco",
     "descripcio": "Miguel, un niño de 12 años, se embarca en una extraordinaria aventura a través de la Tierra de los Muertos para descubrir la verdad detrás de la historia de su familia y su prohibición de la música.",
     "director": "Lee Unkrich",
@@ -50,7 +50,7 @@
   },
 
   {
-    "id": 9,
+    "id": 7,
     "titol": "Tangled",
     "descripcio": "Una princesa llamada Rapunzel, que tiene el pelo más largo y mágico del mundo, escapa de su torre y se embarca en una aventura con un ladrón buscado llamado Flynn Rider.",
     "director": "Nathan Greno, Byron Howard",

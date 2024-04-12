@@ -9,7 +9,7 @@
     <!-- Renderiza el menú de butacas seleccionadas -->
     <div v-if="selectedSeats.length" class="selected-seats">
       <h2>Butacas seleccionadas:</h2>
-      <img :src="store.imagen" alt="Imagen de la película" style="float: right;">  <!-- Añade esto -->
+      <!--<img :src="store.imagen" alt="Imagen de la película" style="float: right;">-->  <!-- Añade esto -->
 
       <ul>
         <li v-for="(seat, index) in selectedSeats" :key="index">
@@ -51,6 +51,10 @@ export default {
     let storeSesion = compraStore();
     this.sessioPinia = storeSesion.sessio;
     this.sessionId = this.sessioPinia ? this.sessioPinia.id : null;
+  },
+  mounted() {
+    const storeSesion = compraStore();
+    console.log(storeSesion.imagen);
   },
   methods: {
     efectuarCompra() {

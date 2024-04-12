@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Botón del menú -->
     <button @click="toggleMenu" class="menu-button">Menú</button>
-    
+
     <!-- Barra lateral del menú -->
     <div class="sidebar" :class="{ 'hidden': !showMenu }">
       <div class="sidebar-header">
@@ -14,13 +14,13 @@
         <li><a @click="filterSessions('evening')">Noche</a></li>
       </ul>
     </div>
-    
+
     <!-- Contenido principal -->
     <div class="content">
       <img src="../public/cinemagala.jpeg" alt="CinemaGala" class="image">
       <h1 class="title">CINEMA GALA</h1>
     </div>
-    
+
     <!-- Lista de sesiones -->
     <div class="sesiones-list">
       <div class="session-container">
@@ -53,7 +53,7 @@ export default {
       sessions: [],
       allSessions: [],
       ruta: 'http://localhost:8000',
-      showMenu: false, 
+      showMenu: false,
     };
   },
   mounted() {
@@ -66,7 +66,8 @@ export default {
       })
       .then((data) => {
         this.sessions = data.sessions;
-        this.allSessions = data.sessions; 
+      
+        this.allSessions = data.sessions;
       })
       .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
@@ -76,10 +77,13 @@ export default {
     goToSession(session) {
       let storeSesion = compraStore();
       storeSesion.sessio = session;
+      if (session.pelicula) {
+        storeSesion.imagen = session.pelicula.imagen;
+      }
       this.$router.push(`/compra`);
     },
     toggleMenu() {
-      this.showMenu = !this.showMenu; 
+      this.showMenu = !this.showMenu;
     },
     filterSessions(timeOfDay) {
       let start, end;
@@ -99,7 +103,7 @@ export default {
           break;
       }
 
-      this.sessions = this.allSessions.filter(session => { 
+      this.sessions = this.allSessions.filter(session => {
         let sessionTime = session.sesion.hora;
         return sessionTime >= start && sessionTime <= end;
       });
@@ -111,7 +115,7 @@ export default {
 <style scoped>
 .menu-button {
   position: absolute;
-  top: 90px; 
+  top: 90px;
   left: 20px;
   z-index: 1;
   background-color: pink;
