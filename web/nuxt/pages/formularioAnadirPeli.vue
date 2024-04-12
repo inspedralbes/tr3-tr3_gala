@@ -26,13 +26,14 @@
   export default {
     data() {
       return {
-        ruta: 'http://localhost:8000',
+      
         newMovie: {
           titol: '',
           descripcio: '',
           director: '',
           any: '',
-          url: ''
+          url: '',
+          ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
         }
       };
     },

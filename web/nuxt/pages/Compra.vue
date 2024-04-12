@@ -37,6 +37,7 @@ export default {
       sessionId: null,
       selectedSeats: [],
       store: compraStore(),
+      ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
     };
   },
   computed: {

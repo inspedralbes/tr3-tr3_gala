@@ -15,6 +15,7 @@ export default {
         name: '',
         email: '',
         password: '',
+        ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
       },
     };
   },
@@ -28,7 +29,7 @@ export default {
 
     console.log("User data:", userData);
 
-    fetch('http://localhost:8000/api/addUser', {
+    fetch(`${this.ruta}/api/addUser`, {
       method: 'POST',
       body: JSON.stringify(userData),
       headers: {

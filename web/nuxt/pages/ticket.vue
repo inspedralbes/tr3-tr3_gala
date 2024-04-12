@@ -54,6 +54,7 @@ export default {
       peliculaPinia: null, // Añade esta línea
       imagenPinia: null, // Añade esta línea
       store: compraStore(),
+      ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
     };
   },
   computed: {
@@ -85,7 +86,7 @@ export default {
       };
 
       try {
-        const response = await fetch(`http://localhost:8000/api/efectuarCompra`, {
+        const response = await fetch(`${this.ruta}/api/efectuarCompra`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -113,7 +114,7 @@ export default {
         }else{
           id--;
         }
-        const response = await fetch(`http://localhost:8000/api/peliculas/${id}`);
+        const response = await fetch(`${this.ruta}/api/peliculas/${id}`);
         if (!response.ok) {
           throw new Error('Error al obtener los datos de la API');
         }

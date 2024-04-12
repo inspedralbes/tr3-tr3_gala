@@ -31,7 +31,7 @@ export default {
   methods: {
     async fetchUserRole(email) {
       const store = compraStore();
-      const response = await fetch(`http://localhost:8000/api/user/role/${email}`);
+      const response = await fetch(`${this.ruta}/api/user/role/${email}`);
       if (response.ok) {
         const data = await response.json();
         store.setUsuarioActualRole(data.role);

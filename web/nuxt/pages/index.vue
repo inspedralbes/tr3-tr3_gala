@@ -28,7 +28,8 @@ export default {
     return {
       email: '',
       password: '',
-      socket: null
+      socket: null,
+      ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public'
     }
   },
   mounted() {
@@ -40,7 +41,7 @@ export default {
     formPost() {
       let store = compraStore();
 
-      fetch(`http://localhost:8000/api/login`, {
+      fetch(`${this.ruta}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -66,14 +67,14 @@ export default {
         })
     },
     fetchUserDetails(email, token) {
-      fetch(`http://localhost:8000/api/user?email=${email}`, {
+      fetch(`${this.ruta}/api/user?email=${email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
         async fetchUserRole(email) {
-          const response = await fetch(`http://localhost:8000/api/user/role/${email}`);
+          const response = await fetch(`${this.ruta}/api/user/role/${email}`);
           if (response.ok) {
             const data = await response.json();
             this.compraStore.setUsuarioActualRole(data.role);

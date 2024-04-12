@@ -20,11 +20,11 @@
 export default {
   data() {
     return {
-      ruta: 'http://localhost:8000',
       newSession: {
         pelicula_id: '',
         fecha: '',
-        hora: ''
+        hora: '',
+        ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
       }
     };
   },

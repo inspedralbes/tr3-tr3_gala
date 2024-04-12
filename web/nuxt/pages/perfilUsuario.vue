@@ -32,6 +32,7 @@ import { compraStore } from "../stores/compra.js";
 export default {
     data() {
         return {
+            ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
             userData: {
                 email: '',
                 name: '',
@@ -67,7 +68,7 @@ export default {
                 updatedUserData.newPassword = this.newField;
             }
 
-            const response = await fetch('http://localhost:8000/api/updateUser', {
+            const response = await fetch(`${this.ruta}/api/updateUser`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

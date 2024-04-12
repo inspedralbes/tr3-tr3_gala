@@ -49,6 +49,7 @@ export default {
       showUserList: false,
       showBillboard: false,
       showSessions: false,
+      ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
     };
   },
   methods: {
@@ -80,7 +81,7 @@ export default {
       this.$router.push('/formularioAnadirUsuario');
     },
     async makeAdmin(user) {
-      const response = await fetch(`http://localhost:8000/api/makeAdmin/${user.email}`, {
+      const response = await fetch(`${this.ruta}/api/makeAdmin/${user.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ export default {
       this.editUserList();  // Refresh the user list
     },
     async makeUser(user) {
-      const response = await fetch(`http://localhost:8000/api/makeUser/${user.email}`, {
+      const response = await fetch(`${this.ruta}/api/makeUser/${user.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ export default {
       this.editUserList();  // Refresh the user list
     },
     async deleteUser(user) {
-      const response = await fetch(`http://localhost:8000/api/deleteUser/${user.email}`, {
+      const response = await fetch(`${this.ruta}/api/deleteUser/${user.email}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +129,7 @@ export default {
       this.editUserList();  // Refresh the user list
     },
     async deleteSession(session) {
-      const response = await fetch(`http://localhost:8000/api/sessions/${session.id}`, {
+      const response = await fetch(`${this.ruta}/api/sessions/${session.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +143,7 @@ export default {
       this.editSessions();  // Refresh the session list
     },
     async deleteMovie(movie) {
-      const response = await fetch(`http://localhost:8000/api/pelicules/${movie.id}`, {
+      const response = await fetch(`${this.ruta}/api/pelicules/${movie.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +161,7 @@ export default {
 
     async editSessions() {
       console.log('Editing sessions');
-      fetch(`http://localhost:8000/api/sessions`)
+      fetch(`${this.ruta}/api/sessions`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Error al obtener los datos de la API");
@@ -179,7 +180,7 @@ export default {
 
 
     async editUserList() {
-      const response = await fetch('http://localhost:8000/api/getUsers', {
+      const response = await fetch(`${this.ruta}/api/getUsers`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -200,7 +201,7 @@ export default {
 
       });
 
-      const updateResponse = await fetch('http://localhost:8000/api/updateUserList', {
+      const updateResponse = await fetch(`${this.ruta}/api/updateUserList`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -218,7 +219,7 @@ export default {
 
 
     async editBillboard() {
-      const response = await fetch(`http://localhost:8000/api/pelicules`);
+      const response = await fetch(`${this.ruta}/api/pelicules`);
 
       if (!response.ok) {
         console.error('Error getting billboard:', response.statusText);

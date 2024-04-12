@@ -31,7 +31,7 @@ const store = compraStore()
 const compras = ref([])
 const currentPage = ref(0)
 const itemsPerPage = 8
-
+const ruta = 'http://tr3-gala.daw.inspedralbes.cat/laravel/public';
 const paginatedCompras = computed(() => {
   const start = currentPage.value * itemsPerPage
   const end = start + itemsPerPage
@@ -55,8 +55,9 @@ const previousPage = () => {
 onMounted(async () => {
   try {
     const store = compraStore();
+    const ruta = 'http://tr3-gala.daw.inspedralbes.cat/laravel/public';
     console.log(`Fetching purchases for user: ${store.email}`);
-    const response = await fetch(`http://localhost:8000/api/comprasPorUsuario?userEmail=${store.email}`, {
+    const response = await fetch(`${ruta}/api/comprasPorUsuario?userEmail=${store.email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

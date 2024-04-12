@@ -33,7 +33,7 @@
 export default {
   data() {
     return {
-      ruta: 'http://localhost:8000',
+      ruta: 'http://tr3-gala.daw.inspedralbes.cat/laravel/public',
       movies: [],
       selectedMovie: null,
       currentPage: 0,
@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-  fetch(`http://localhost:8000/api/peliculesProximamente`) 
+  fetch(`${this.ruta}/api/peliculesProximamente`) 
     .then(response => {
       if (!response.ok) {
         throw new Error('Error al obtener los datos de la API');
