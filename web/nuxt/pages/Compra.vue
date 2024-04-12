@@ -1,5 +1,7 @@
 <template>
+  <h1><b><u>SELECCIONA LES TEVES BUTAQUES</u></b></h1>
   <div class="container">
+    
     <!-- Renderiza el componente de butacas -->
     <Butacas :sessionId="sessioPinia && sessioPinia.id" @seatSelected="handleSeatSelected"
       @seatDeselected="handleSeatDeselected" />
@@ -7,6 +9,8 @@
     <!-- Renderiza el menú de butacas seleccionadas -->
     <div v-if="selectedSeats.length" class="selected-seats">
       <h2>Butacas seleccionadas:</h2>
+      <img :src="store.imagen" alt="Imagen de la película" style="float: right;">  <!-- Añade esto -->
+
       <ul>
         <li v-for="(seat, index) in selectedSeats" :key="index">
           Butaca: {{ seat.id }} - Precio: {{ seat.precio }}€
@@ -15,7 +19,7 @@
       <p>Total de butacas seleccionadas: {{ totalSeats }}</p>
       <p>Total a pagar: {{ totalPrice }}€</p>
     </div>
-    <button @click="efectuarCompra">Comprar</button>
+    <button @click="efectuarCompra" :disabled="!selectedSeats.length">Comprar</button>
   </div>
 </template>
 
@@ -32,6 +36,7 @@ export default {
       sessioPinia: null,
       sessionId: null,
       selectedSeats: [],
+      store: compraStore(),
     };
   },
   computed: {
@@ -87,14 +92,22 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  text-align: center;
+  font-size: 30px;
+  color: #333;
+  margin-top: 20px;
+
+}
+
 .container {
   width: 80%;
-  margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   background-color: #f8f8f8;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  margin: 10%
 }
 
 .fade-enter-active,

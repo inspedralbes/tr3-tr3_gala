@@ -125,6 +125,7 @@ body {
   margin: 1em;
   cursor: pointer;
   transition: transform 0.3s ease;
+ 
 }
 
 .session-item:hover {
@@ -134,12 +135,14 @@ body {
 .session-image {
   position: relative;
   width: 100%;
+  
  
 }
 
 .session-image img {
   width: 100%;
   height: auto;
+  border-radius: 5%;
 }
 
 .session-title {
